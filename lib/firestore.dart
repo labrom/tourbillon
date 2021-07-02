@@ -5,8 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'log.dart';
 
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
-  T? getOrNull<T>(String field) =>
-      this.data().containsKey(field) ? this.get(field) : null;
+  T? getOrNull<T>(String field) {
+    try {
+      return get(field);
+    } on StateError {
+      return null;
+    }
+  }
 
   T getOrDefault<T>(String field, T defaultValue) =>
       this.getOrNull(field) ?? defaultValue;
