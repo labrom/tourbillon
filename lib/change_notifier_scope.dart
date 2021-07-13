@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pono/log.dart';
 import 'package:provider/provider.dart';
 
 /// A widget that gives all widgets under itself access to a [ChangeNotifier].
@@ -24,6 +25,7 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
       var changeNotifier = Provider.of<CN>(context, listen: false);
       return builder(context, changeNotifier, child);
     } on ProviderNotFoundException {
+      log.d('Found no instance of $CN, creating one');
       return ChangeNotifierProvider<CN>(
         create: create,
         child: Consumer<CN>(
