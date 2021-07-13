@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
   final Widget? child;
   final CN Function(BuildContext context) create;
-  final ChangeNotifierBuilder<CN> builder;
+  final ChangeNotifierConsumerBuilder<CN> builder;
 
   ChangeNotifierScope(
     this.create, {
@@ -38,5 +38,6 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
   }
 }
 
-typedef ChangeNotifierBuilder<CN extends ChangeNotifier> = Function(
+/// A function that builds a consumer widget for the [ChangeNotifier].
+typedef ChangeNotifierConsumerBuilder<CN extends ChangeNotifier> = Function(
     BuildContext context, CN notifier, Widget? child);
