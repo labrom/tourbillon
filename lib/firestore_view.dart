@@ -17,6 +17,7 @@ class FirestoreView extends StatelessWidget {
     return ChangeNotifierScope<DataProvider>(
       (_) => DataProvider(path),
       builder: (context, provider, _) => ListView.builder(
+        itemCount: provider.data.length,
         itemBuilder: (context, index) =>
             Text(provider.data[index].getOrDefault('name', '')),
       ),
