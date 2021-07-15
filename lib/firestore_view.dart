@@ -52,7 +52,7 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
     return StreamBuilder<QuerySnapshot>(
       stream: _stream,
       builder: (context, snapshot) => ListView.builder(
-        itemCount: snapshot.data!.size,
+        itemCount: snapshot.data?.size ?? 0,
         itemBuilder: (context, index) => _ListItem(snapshot.data!.docs[index]),
       ),
     );

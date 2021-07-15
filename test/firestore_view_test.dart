@@ -23,4 +23,20 @@ void main() {
     await tester.pump();
     expect(find.text('Roro'), findsOneWidget);
   });
+  testWidgets('basic stream', (tester) async {
+    final fakeFirestoreWrapper = FakeFirestoreWrapper();
+    await fakeFirestoreWrapper.fake.collection('test_data').add({
+      'name': 'Roro',
+    });
+    await tester.pumpWidget(Directionality(
+      textDirection: TextDirection.ltr,
+      child: Provider<FirestoreInterface>.value(
+        value: fakeFirestoreWrapper,
+        child: Builder(builder: (_) => FirestoreStreamView('test_data')),
+      ),
+    ));
+    await tester.idle();
+    await tester.pump();
+    expect(find.text('Roro'), findsOneWidget);
+  });
 }
