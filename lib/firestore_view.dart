@@ -16,7 +16,7 @@ class FirestoreView extends StatelessWidget {
   }) : super(key: key);
 
   FirestoreView.basicName(String path, {Key? key})
-      : this(path, itemBuilder: (_, snapshot) => _ListItem(snapshot), key: key);
+      : this(path, itemBuilder: _ListItem.builder, key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class FirestoreStreamView extends StatefulWidget {
   }) : super(key: key);
 
   FirestoreStreamView.basicName(String path, {Key? key})
-      : this(path, itemBuilder: (_, snapshot) => _ListItem(snapshot), key: key);
+      : this(path, itemBuilder: _ListItem.builder, key: key);
 
   @override
   State<StatefulWidget> createState() => _FirestoreStreamViewState();
@@ -72,6 +72,9 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
 }
 
 class _ListItem extends StatelessWidget {
+  static final Widget Function(BuildContext, DocumentSnapshot) builder =
+      (_, snapshot) => _ListItem(snapshot);
+
   final DocumentSnapshot doc;
 
   _ListItem(this.doc);
