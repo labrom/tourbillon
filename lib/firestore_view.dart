@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 import 'change_notifier_scope.dart';
@@ -7,7 +8,7 @@ import 'firestore.dart';
 class FirestoreView extends StatelessWidget {
   final String path;
 
-  const FirestoreView(
+  FirestoreView(
     this.path, {
     Key? key,
   }) : super(key: key);
@@ -18,9 +19,50 @@ class FirestoreView extends StatelessWidget {
       (_) => DataProvider(path),
       builder: (context, provider, _) => ListView.builder(
         itemCount: provider.data.length,
-        itemBuilder: (context, index) =>
-            Text(provider.data[index].getOrDefault('name', '')),
+        itemBuilder: (context, index) => _ListItem(provider.data[index]),
       ),
     );
   }
+}
+
+class FirestoreStreamView extends StatefulWidget {
+  final String path;
+
+  FirestoreStreamView(
+    this.path, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _FirestoreStreamViewState();
+}
+
+class _FirestoreStreamViewState extends State<FirestoreStreamView> {
+  late Stream<QuerySnapshot> _stream;
+
+  @override
+  void initState() {
+    super.initState();
+    _stream = FirebaseFirestore.instance.collection(widget.path).snapshots();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _stream,
+      builder: (context, snapshot) => ListView.builder(
+        itemCount: snapshot.data!.size,
+        itemBuilder: (context, index) => _ListItem(snapshot.data!.docs[index]),
+      ),
+    );
+  }
+}
+
+class _ListItem extends StatelessWidget {
+  final DocumentSnapshot doc;
+
+  _ListItem(this.doc);
+
+  @override
+  Widget build(BuildContext context) => Text(doc.getOrDefault('name', ''));
 }
