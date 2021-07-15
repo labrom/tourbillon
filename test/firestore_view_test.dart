@@ -16,7 +16,7 @@ void main() {
       textDirection: TextDirection.ltr,
       child: Provider<FirestoreInterface>.value(
         value: fakeFirestoreWrapper,
-        child: Builder(builder: (_) => FirestoreView('test_data')),
+        child: Builder(builder: (_) => FirestoreView.basicName('test_data')),
       ),
     ));
     await tester.idle();
@@ -32,7 +32,8 @@ void main() {
       textDirection: TextDirection.ltr,
       child: Provider<FirestoreInterface>.value(
         value: fakeFirestoreWrapper,
-        child: Builder(builder: (_) => FirestoreStreamView('test_data')),
+        child:
+            Builder(builder: (_) => FirestoreStreamView.basicName('test_data')),
       ),
     ));
     await tester.idle();

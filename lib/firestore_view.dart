@@ -7,11 +7,16 @@ import 'firestore.dart';
 
 class FirestoreView extends StatelessWidget {
   final String path;
+  final Widget Function(BuildContext, DocumentSnapshot) itemBuilder;
 
   FirestoreView(
     this.path, {
+    required this.itemBuilder,
     Key? key,
   }) : super(key: key);
+
+  FirestoreView.basicName(String path, {Key? key})
+      : this(path, itemBuilder: (_, snapshot) => _ListItem(snapshot), key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,8 @@ class FirestoreView extends StatelessWidget {
       (_) => DataProvider(context, path),
       builder: (context, provider, _) => ListView.builder(
         itemCount: provider.data.length,
-        itemBuilder: (context, index) => _ListItem(provider.data[index]),
+        itemBuilder: (context, index) =>
+            itemBuilder(context, provider.data[index]),
       ),
     );
   }
@@ -27,11 +33,16 @@ class FirestoreView extends StatelessWidget {
 
 class FirestoreStreamView extends StatefulWidget {
   final String path;
+  final Widget Function(BuildContext, DocumentSnapshot) itemBuilder;
 
   FirestoreStreamView(
     this.path, {
+    required this.itemBuilder,
     Key? key,
   }) : super(key: key);
+
+  FirestoreStreamView.basicName(String path, {Key? key})
+      : this(path, itemBuilder: (_, snapshot) => _ListItem(snapshot), key: key);
 
   @override
   State<StatefulWidget> createState() => _FirestoreStreamViewState();
@@ -53,7 +64,8 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
       stream: _stream,
       builder: (context, snapshot) => ListView.builder(
         itemCount: snapshot.data?.size ?? 0,
-        itemBuilder: (context, index) => _ListItem(snapshot.data!.docs[index]),
+        itemBuilder: (context, index) =>
+            widget.itemBuilder(context, snapshot.data!.docs[index]),
       ),
     );
   }
