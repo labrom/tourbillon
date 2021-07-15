@@ -1,8 +1,33 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import 'log.dart';
+
+abstract class FirestoreInterface {
+  FirebaseFirestore get instance;
+}
+
+class _FirebaseFirestoreWrapper implements FirestoreInterface {
+  static const _wrapper = _FirebaseFirestoreWrapper._();
+
+  const _FirebaseFirestoreWrapper._();
+
+  factory _FirebaseFirestoreWrapper() => _wrapper;
+
+  @override
+  FirebaseFirestore get instance => FirebaseFirestore.instance;
+}
+
+FirestoreInterface firestoreProvider(BuildContext context) {
+  try {
+    return context.read<FirestoreInterface>();
+  } on ProviderNotFoundException {
+    return _FirebaseFirestoreWrapper();
+  }
+}
 
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
   T? getOrNull<T>(String field) {

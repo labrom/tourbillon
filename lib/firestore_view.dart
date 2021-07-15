@@ -16,7 +16,7 @@ class FirestoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierScope<DataProvider>(
-      (_) => DataProvider(path),
+      (_) => DataProvider(context, path),
       builder: (context, provider, _) => ListView.builder(
         itemCount: provider.data.length,
         itemBuilder: (context, index) => _ListItem(provider.data[index]),
@@ -43,7 +43,8 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
   @override
   void initState() {
     super.initState();
-    _stream = FirebaseFirestore.instance.collection(widget.path).snapshots();
+    _stream =
+        firestoreProvider(context).instance.collection(widget.path).snapshots();
   }
 
   @override
