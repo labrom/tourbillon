@@ -13,6 +13,9 @@ class FirestoreView extends StatelessWidget {
   /// Function that builds a Widget for each list item.
   final Widget Function(BuildContext, DocumentSnapshot) itemBuilder;
 
+  /// Function that allows to filter, limit, or order the document collection.
+  final Query Function(CollectionReference)? queryModifier;
+
   /// Callback function that is invoked when a list item is selected. The
   /// parameter is the item's Firestore document ID.
   final void Function(String)? onItemSelected;
@@ -20,17 +23,30 @@ class FirestoreView extends StatelessWidget {
   FirestoreView(
     this.path, {
     required this.itemBuilder,
+    this.queryModifier,
     this.onItemSelected,
     Key? key,
   }) : super(key: key);
 
-  FirestoreView.basicName(String path, {Key? key})
-      : this(path, itemBuilder: _ListItem.builder, key: key);
+  FirestoreView.basicName(
+    String path, {
+    Query Function(CollectionReference)? queryModifier,
+    Key? key,
+  }) : this(
+          path,
+          itemBuilder: _ListItem.builder,
+          queryModifier: queryModifier,
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierScope<DataProvider>(
-      (_) => DataProvider(context, path),
+      (_) => DataProvider(
+        context,
+        path,
+        queryModifier: queryModifier,
+      ),
       builder: (context, provider, _) => ListView.builder(
         itemCount: provider.data.length,
         itemBuilder: (context, index) => onItemSelected != null
@@ -43,19 +59,37 @@ class FirestoreView extends StatelessWidget {
 }
 
 class FirestoreStreamView extends StatefulWidget {
+  /// The path to the Firestore collection displayed by this list widget.
   final String path;
+
+  /// Function that builds a Widget for each list item.
   final Widget Function(BuildContext, DocumentSnapshot) itemBuilder;
+
+  /// Function that allows to filter, limit, or order the document collection.
+  final Query Function(CollectionReference)? queryModifier;
+
+  /// Callback function that is invoked when a list item is selected. The
+  /// parameter is the item's Firestore document ID.
   final void Function(String)? onItemSelected;
 
   FirestoreStreamView(
     this.path, {
     required this.itemBuilder,
+    this.queryModifier,
     this.onItemSelected,
     Key? key,
   }) : super(key: key);
 
-  FirestoreStreamView.basicName(String path, {Key? key})
-      : this(path, itemBuilder: _ListItem.builder, key: key);
+  FirestoreStreamView.basicName(
+    String path, {
+    Query Function(CollectionReference)? queryModifier,
+    Key? key,
+  }) : this(
+          path,
+          itemBuilder: _ListItem.builder,
+          queryModifier: queryModifier,
+          key: key,
+        );
 
   @override
   State<StatefulWidget> createState() => _FirestoreStreamViewState();
@@ -67,8 +101,12 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
   @override
   void initState() {
     super.initState();
-    _stream =
-        firestoreProvider(context).instance.collection(widget.path).snapshots();
+    var collection =
+        firestoreProvider(context).instance.collection(widget.path);
+    var query = widget.queryModifier != null
+        ? widget.queryModifier!(collection)
+        : collection;
+    _stream = query.snapshots();
   }
 
   @override
