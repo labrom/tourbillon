@@ -1,21 +1,19 @@
-import 'dart:ui';
-
 import 'package:tourbillon/loc.dart';
 
 abstract class LibLocalizations {
-  static final delegate =
-      AppLocalizationsDelegate(builder: (locale) => _LibLocalizations(locale));
+  static final delegate = AppLocalizationsDelegate<_LibLocalizations>(
+    values: {
+      'tourbillon': {
+        en: 'Whirlwind',
+        fr: 'Tourbillon',
+      },
+    },
+    builder: (locale, values) => _LibLocalizations(locale, values),
+  );
 }
 
 class _LibLocalizations extends BaseLocalizations {
-  _LibLocalizations(Locale locale) : super(locale, _values);
+  _LibLocalizations(locale, values) : super(locale, values);
 
   String get tourbillon => get('tourbillon');
 }
-
-const Map<String, Map<String, String>> _values = {
-  'tourbillon': {
-    en: 'Whirlwind',
-    fr: 'Tourbillon',
-  },
-};
