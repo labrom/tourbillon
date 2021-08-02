@@ -22,6 +22,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cloud_firestore:
+  firebase_auth:
   logger:
   provider:
 
