@@ -7,7 +7,8 @@ import 'sign_in_manager.dart';
 /// A widget that displays the currently signed-in user's name and icon.
 ///
 /// When clicked, this widget displays an overlay menu that contains more information
-/// on the current user, and allows to sign out. The menu is displayed below the widget,
+/// on the current user, has a link to a settings screen if [settingsRouteName]
+/// is specified, and allows to sign out. The menu is displayed below the widget,
 /// and is right-aligned with the widget.
 /// The menu uses [ThemeData.backgroundColor] as its background color, [TextTheme.subtitle1]
 /// for the user name, and [TextTheme.caption] for the email address.
