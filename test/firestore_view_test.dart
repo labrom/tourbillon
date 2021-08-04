@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
@@ -118,5 +119,52 @@ void main() {
     await tester.idle();
     await tester.pump();
     expect(find.text('Roro'), findsOneWidget);
+  });
+  testWidgets('tile', (tester) async {
+    final fakeFirestoreWrapper = FakeFirestoreWrapper();
+    await fakeFirestoreWrapper.fake.collection('test_data').add({
+      'name': 'Roro',
+    });
+    await tester.pumpWidget(MaterialApp(
+      home: Material(
+        child: Provider<FirestoreInterface>.value(
+          value: fakeFirestoreWrapper,
+          child: Builder(
+            builder: (_) => FirestoreView.tile(
+              'test_data',
+              titleField: 'name',
+            ),
+          ),
+        ),
+      ),
+    ));
+    await tester.idle();
+    await tester.pump();
+    expect(find.text('Roro'), findsOneWidget);
+  });
+  testWidgets('tile with subtitle', (tester) async {
+    final fakeFirestoreWrapper = FakeFirestoreWrapper();
+    await fakeFirestoreWrapper.fake.collection('test_data').add({
+      'name': 'Roro',
+      'cats': 1,
+    });
+    await tester.pumpWidget(MaterialApp(
+      home: Material(
+        child: Provider<FirestoreInterface>.value(
+          value: fakeFirestoreWrapper,
+          child: Builder(
+            builder: (_) => FirestoreView.tile(
+              'test_data',
+              titleField: 'name',
+              subtitleField: 'cats',
+            ),
+          ),
+        ),
+      ),
+    ));
+    await tester.idle();
+    await tester.pump();
+    expect(find.text('Roro'), findsOneWidget);
+    expect(find.text('1'), findsOneWidget);
   });
 }

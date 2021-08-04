@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'change_notifier_scope.dart';
@@ -35,6 +36,27 @@ class FirestoreView extends StatelessWidget {
   }) : this(
           path,
           itemBuilder: _ListItem.builder,
+          queryModifier: queryModifier,
+          key: key,
+        );
+
+  FirestoreView.tile(
+    String path, {
+    Query Function(CollectionReference)? queryModifier,
+    required String titleField,
+    String? subtitleField,
+    bool dense = false,
+    bool isThreeLine = false,
+    Key? key,
+  }) : this(
+          path,
+          itemBuilder: (_, doc) => _TileListItem(
+            doc,
+            titleField: titleField,
+            subtitleField: subtitleField,
+            dense: dense,
+            isThreeLine: isThreeLine,
+          ),
           queryModifier: queryModifier,
           key: key,
         );
@@ -87,6 +109,27 @@ class FirestoreStreamView extends StatefulWidget {
   }) : this(
           path,
           itemBuilder: _ListItem.builder,
+          queryModifier: queryModifier,
+          key: key,
+        );
+
+  FirestoreStreamView.tile(
+    String path, {
+    Query Function(CollectionReference)? queryModifier,
+    required String titleField,
+    String? subtitleField,
+    bool dense = false,
+    bool isThreeLine = false,
+    Key? key,
+  }) : this(
+          path,
+          itemBuilder: (_, doc) => _TileListItem(
+            doc,
+            titleField: titleField,
+            subtitleField: subtitleField,
+            dense: dense,
+            isThreeLine: isThreeLine,
+          ),
           queryModifier: queryModifier,
           key: key,
         );
@@ -147,4 +190,30 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(doc.getOrDefault('name', ''));
+}
+
+class _TileListItem extends StatelessWidget {
+  final DocumentSnapshot doc;
+  final String titleField;
+  final String? subtitleField;
+  final bool dense;
+  final bool isThreeLine;
+
+  _TileListItem(
+    this.doc, {
+    required this.titleField,
+    this.subtitleField,
+    this.dense = false,
+    this.isThreeLine = false,
+  });
+
+  @override
+  Widget build(BuildContext context) => ListTile(
+        title: Text(doc.getOrDefaultString(titleField, '')),
+        subtitle: subtitleField != null
+            ? Text(doc.getOrDefaultString(subtitleField!, ''))
+            : null,
+        dense: dense,
+        isThreeLine: isThreeLine,
+      );
 }
