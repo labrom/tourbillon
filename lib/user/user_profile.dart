@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tourbillon/libloc.dart';
 
-import '../libloc.dart';
 import 'sign_in_manager.dart';
 
 /// A widget that displays the currently signed-in user's name and icon.
