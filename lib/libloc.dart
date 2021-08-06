@@ -14,6 +14,10 @@ class LibLocalizations extends BaseLocalizations {
         en: 'NO',
         fr: 'NON',
       },
+      'searchUserLabel': {
+        en: 'User name or email address',
+        fr: 'Nom ou adresse email d\'un utilisateur',
+      },
       'signInButtonLabel': {
         en: 'SIGN IN',
         fr: 'SE CONNECTER',
@@ -34,6 +38,7 @@ class LibLocalizations extends BaseLocalizations {
 
   String get accountSettingsMenu => get('accountSettingsMenu');
   String get noButtonLabel => get('noButtonLabel');
+  String get searchUserLabel => get('searchUserLabel');
   String get signInButtonLabel => get('signInButtonLabel');
   String get signOutButtonLabel => get('signOutButtonLabel');
   String get yesButtonLabel => get('yesButtonLabel');
