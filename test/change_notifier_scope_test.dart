@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:tourbillon/change_notifier_scope.dart';
+import 'package:tourbillon/log.dart';
 
 void main() {
   testWidgets('Provider presence', (tester) async {
@@ -121,7 +122,7 @@ class _TestChangeNotifierConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Build ${context.read<_TestChangeNotifier>().count}');
+    log.v('Build ${context.read<_TestChangeNotifier>().count}');
     return Text('$label: ${context.read<_TestChangeNotifier>().count}');
   }
 }
