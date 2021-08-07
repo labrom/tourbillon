@@ -58,9 +58,9 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
 /// [QuerySnapshot].
 extension QuerySnapshotMap on Stream<QuerySnapshot> {
   StreamSubscription<QuerySnapshot> listenUnique(
-    void onData(QuerySnapshot event)?, {
+    void Function(QuerySnapshot event)? onData, {
     Function? onError,
-    void onDone()?,
+    void Function()? onDone,
     bool? cancelOnError,
     required String key,
   }) =>
@@ -78,9 +78,9 @@ extension QuerySnapshotMap on Stream<QuerySnapshot> {
 /// [DocumentSnapshot].
 extension DocumentSnapshotMap on Stream<DocumentSnapshot> {
   StreamSubscription<DocumentSnapshot> listenUnique(
-    void onData(DocumentSnapshot event)?, {
+    void Function(DocumentSnapshot event)? onData, {
     Function? onError,
-    void onDone()?,
+    void Function()? onDone,
     bool? cancelOnError,
     required String key,
   }) =>
@@ -96,9 +96,9 @@ extension DocumentSnapshotMap on Stream<DocumentSnapshot> {
 
 StreamSubscription<T> _listenUnique<T>(
   Stream<T> stream,
-  void onData(T event)?, {
+  void Function(T event)? onData, {
   Function? onError,
-  void onDone()?,
+  void Function()? onDone,
   bool? cancelOnError,
   required String key,
 }) =>
