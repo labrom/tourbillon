@@ -14,7 +14,7 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
   final CN Function(BuildContext context) create;
   final ChangeNotifierConsumerBuilder<CN> builder;
 
-  ChangeNotifierScope(
+  const ChangeNotifierScope(
     this.create, {
     required this.builder,
     this.child,
