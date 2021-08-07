@@ -149,5 +149,5 @@ extension Interpolation on String {
   }
 
   String withParam(dynamic value) => replaceAll('{}', '$value')
-      .replaceAll(RegExp('\{[a-zA-Z0-9]+\}'), '$value');
+      .replaceAll(RegExp('{[a-zA-Z0-9._-]+}'), '$value');
 }
