@@ -6,11 +6,12 @@ class SearchField<T> extends StatefulWidget {
   final List<T> Function(String query) getResults;
   final void Function(T) onSelectResult;
 
-  SearchField({
-    this.hint,
-    required this.getResults,
-    required this.onSelectResult,
-  });
+  SearchField(
+      {this.hint,
+      required this.getResults,
+      required this.onSelectResult,
+      Key? key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SearchFieldState<T>();
@@ -61,7 +62,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
           builder: (context) => Positioned(
             left: offset.dx,
             top: offset.dy + renderBox.size.height + 2,
-            child: Container(
+            child: SizedBox(
               width: renderBox.size.width,
               height: renderBox.size.height * 2,
               child: Material(

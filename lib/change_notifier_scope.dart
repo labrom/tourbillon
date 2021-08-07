@@ -18,7 +18,8 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
     this.create, {
     required this.builder,
     this.child,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
