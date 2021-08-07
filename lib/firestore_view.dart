@@ -21,7 +21,7 @@ class FirestoreView extends StatelessWidget {
   /// parameter is the item's Firestore document ID.
   final void Function(String)? onItemSelected;
 
-  FirestoreView(
+  const FirestoreView(
     this.path, {
     required this.itemBuilder,
     this.queryModifier,
@@ -29,7 +29,7 @@ class FirestoreView extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  FirestoreView.basicName(
+  const FirestoreView.basicName(
     String path, {
     Query Function(CollectionReference)? queryModifier,
     Key? key,
@@ -94,7 +94,7 @@ class FirestoreStreamView extends StatefulWidget {
   /// parameter is the item's Firestore document ID.
   final void Function(String)? onItemSelected;
 
-  FirestoreStreamView(
+  const FirestoreStreamView(
     this.path, {
     required this.itemBuilder,
     this.queryModifier,
@@ -102,7 +102,7 @@ class FirestoreStreamView extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  FirestoreStreamView.basicName(
+  const FirestoreStreamView.basicName(
     String path, {
     Query Function(CollectionReference)? queryModifier,
     Key? key,
@@ -186,7 +186,7 @@ class _ListItem extends StatelessWidget {
 
   final DocumentSnapshot doc;
 
-  _ListItem(this.doc);
+  const _ListItem(this.doc);
 
   @override
   Widget build(BuildContext context) => Text(doc.getOrDefault('name', ''));
@@ -199,7 +199,7 @@ class _TileListItem extends StatelessWidget {
   final bool dense;
   final bool isThreeLine;
 
-  _TileListItem(
+  const _TileListItem(
     this.doc, {
     required this.titleField,
     this.subtitleField,

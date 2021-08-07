@@ -118,7 +118,7 @@ class _TestChangeNotifier extends ChangeNotifier {
 class _TestChangeNotifierConsumer extends StatelessWidget {
   final String label;
 
-  _TestChangeNotifierConsumer({this.label = 'Count'});
+  const _TestChangeNotifierConsumer({this.label = 'Count'});
 
   @override
   Widget build(BuildContext context) {

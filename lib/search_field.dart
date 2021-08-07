@@ -6,7 +6,7 @@ class SearchField<T> extends StatefulWidget {
   final List<T> Function(String query) getResults;
   final void Function(T) onSelectResult;
 
-  SearchField(
+  const SearchField(
       {this.hint,
       required this.getResults,
       required this.onSelectResult,
