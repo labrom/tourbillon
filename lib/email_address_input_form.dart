@@ -11,16 +11,18 @@ import 'libloc.dart';
 /// When the button is pressed, the text input field is emptied.
 /// Irrespective of the presence or absence of the Add button, the
 /// [onEmailAddressValidityChanged] function, if provided, will be invoked
-/// whenever the typed-in email address validity changes. The text input is
-/// initially empty, and validity is `false`, so the first call to
-/// [onEmailAddressValidityChanged] will only happen when the typed-in
+/// whenever the typed-in email address validity changes, with the conteNnt of
+/// the input field.
+/// The text input is initially empty, and validity is `false`, so the first
+/// call to [onEmailAddressValidityChanged] will only happen when the typed-in
 /// address becomes valid.
 /// If the Add button is present, [onEmailAddressValidityChanged] will be
 /// invoked with the value `false` when the button is tapped, and the field is
 /// emptied.
 class EmailAddressInputForm extends StatefulWidget {
   final void Function(String emailAddress)? onAddEmailAddress;
-  final void Function(bool valid)? onEmailAddressValidityChanged;
+  final void Function(String emailAddress, bool valid)?
+      onEmailAddressValidityChanged;
 
   const EmailAddressInputForm(
     this.onAddEmailAddress, {
@@ -29,9 +31,12 @@ class EmailAddressInputForm extends StatefulWidget {
   }) : super(key: key);
 
   const EmailAddressInputForm.withoutAddButton({
-    this.onEmailAddressValidityChanged,
+    required void Function(String emailAddress, bool valid)
+        onEmailAddressValidityChanged,
     Key? key,
   })  : onAddEmailAddress = null,
+        // ignore: prefer_initializing_formals
+        onEmailAddressValidityChanged = onEmailAddressValidityChanged,
         super(key: key);
 
   @override
@@ -99,7 +104,7 @@ class _EmailAddressInputFormState extends State<EmailAddressInputForm> {
     if (_isValidEmailAddress != valid) {
       setState(() {
         _isValidEmailAddress = valid;
-        widget.onEmailAddressValidityChanged?.call(valid);
+        widget.onEmailAddressValidityChanged?.call(_controller.text, valid);
       });
     }
   }
