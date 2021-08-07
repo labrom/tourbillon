@@ -181,8 +181,8 @@ class _ClickHandler extends StatelessWidget {
 }
 
 class _ListItem extends StatelessWidget {
-  static final Widget Function(BuildContext, DocumentSnapshot) builder =
-      (_, snapshot) => _ListItem(snapshot);
+  static Widget builder(BuildContext context, DocumentSnapshot snapshot) =>
+      _ListItem(snapshot);
 
   final DocumentSnapshot doc;
 
