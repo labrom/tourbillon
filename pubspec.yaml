@@ -22,8 +22,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cloud_firestore:
-  firebase_auth:
-  google_sign_in:
   logger:
   provider:
 

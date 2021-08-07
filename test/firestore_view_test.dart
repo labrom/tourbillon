@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tourbillon/firestore.dart';
 import 'package:tourbillon/firestore_view.dart';
 
-import 'fake_firestore.dart';
+import '../lib/fake_firestore.dart';
 
 void main() {
   testWidgets('basic', (tester) async {
