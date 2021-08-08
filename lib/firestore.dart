@@ -44,6 +44,9 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
       return get(field);
     } on StateError {
       return null;
+    } catch (e) {
+      log.w('Expected StateError but got $e');
+      return null;
     }
   }
 
