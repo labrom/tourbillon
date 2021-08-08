@@ -4,7 +4,7 @@ import 'libloc.dart';
 
 /// A widget that displays a text input field for email addresses.
 ///
-/// The widget can be displayed wih or without an Add button that allows
+/// The widget can be displayed with or without an Add button that allows
 /// to send the valid email address input to the [onAddEmailAddress] function.
 /// In this case, the button id displayed on the same line as the text input, on
 /// the `end` side.
