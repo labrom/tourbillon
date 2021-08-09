@@ -8,7 +8,7 @@ import 'libloc.dart';
 /// to send the valid email address input to the [onAddEmailAddress] function.
 /// In this case, the button id displayed on the same line as the text input, on
 /// the `end` side.
-/// When the button is pressed, the text input field is emptied.
+/// When the Add button is pressed, the text input field is cleared.
 /// Irrespective of the presence or absence of the Add button, the
 /// [onEmailAddressValidityChanged] function, if provided, will be invoked
 /// whenever the typed-in email address validity changes, with the conteNnt of
@@ -20,9 +20,18 @@ import 'libloc.dart';
 /// invoked with the value `false` when the button is tapped, and the field is
 /// emptied.
 class EmailAddressInputForm extends StatefulWidget {
+  /// Callback function that is invoked when the Add button is tapped.
   final void Function(String emailAddress)? onAddEmailAddress;
-  final void Function(String emailAddress, bool valid)?
-      onEmailAddressValidityChanged;
+
+  /// Callback function that is invoked when the typed-in address becomes
+  /// valid or invalid.
+  ///
+  /// This function is mostly useful when this form has no Add button, as a
+  /// way to control externally what's in the text field.
+  /// The callback should return `true` when the text field shoud be cleared,
+  /// (typically when the address is valid, it was picked and user can enter
+  /// another address).
+  final bool Function(String input, bool valid)? onEmailAddressValidityChanged;
 
   const EmailAddressInputForm(
     this.onAddEmailAddress, {
@@ -31,7 +40,7 @@ class EmailAddressInputForm extends StatefulWidget {
   }) : super(key: key);
 
   const EmailAddressInputForm.withoutAddButton({
-    required void Function(String emailAddress, bool valid)
+    required bool Function(String input, bool valid)
         onEmailAddressValidityChanged,
     Key? key,
   })  : onAddEmailAddress = null,
@@ -104,13 +113,25 @@ class _EmailAddressInputFormState extends State<EmailAddressInputForm> {
     if (_isValidEmailAddress != valid) {
       setState(() {
         _isValidEmailAddress = valid;
-        widget.onEmailAddressValidityChanged?.call(_controller.text, valid);
       });
+      if (widget.onEmailAddressValidityChanged?.call(_controller.text, valid) ==
+          true) {
+        _clearInput();
+      }
     }
   }
 
   void _addEmailAddress() {
     widget.onAddEmailAddress?.call(_controller.text);
+    _clearInput();
+  }
+
+  void _clearInput() {
+    _controller.removeListener(_updateEmailAddressValidity);
     _controller.clear();
+    _controller.addListener(_updateEmailAddressValidity);
+    setState(() {
+      _isValidEmailAddress = false;
+    });
   }
 }
