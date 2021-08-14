@@ -11,7 +11,7 @@ import 'libloc.dart';
 /// When the Add button is pressed, the text input field is cleared.
 /// Irrespective of the presence or absence of the Add button, the
 /// [onEmailAddressValidityChanged] function, if provided, will be invoked
-/// whenever the typed-in email address validity changes, with the conteNnt of
+/// whenever the typed-in email address validity changes, with the content of
 /// the input field.
 /// The text input is initially empty, and validity is `false`, so the first
 /// call to [onEmailAddressValidityChanged] will only happen when the typed-in
