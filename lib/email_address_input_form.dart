@@ -26,22 +26,23 @@ class EmailAddressInputForm extends StatefulWidget {
   /// Callback function that is invoked when the typed-in address becomes
   /// valid or invalid.
   ///
-  /// This function is mostly useful when this form has no Add button, as a
-  /// way to control externally what's in the text field.
-  /// The callback should return `true` when the text field shoud be cleared,
-  /// (typically when the address is valid, it was picked and user can enter
-  /// another address).
-  final bool Function(String input, bool valid)? onEmailAddressValidityChanged;
+  /// This function is useful when external components need to update some UI
+  /// based on what the user typed into the input field.
+  final void Function(String input, bool valid)? onEmailAddressValidityChanged;
+
+  final TextEditingController? controller;
 
   const EmailAddressInputForm(
     this.onAddEmailAddress, {
     this.onEmailAddressValidityChanged,
     Key? key,
-  }) : super(key: key);
+  })  : controller = null,
+        super(key: key);
 
   const EmailAddressInputForm.withoutAddButton({
-    required bool Function(String input, bool valid)
+    required void Function(String input, bool valid)
         onEmailAddressValidityChanged,
+    required this.controller,
     Key? key,
   })  : onAddEmailAddress = null,
         // ignore: prefer_initializing_formals
@@ -61,7 +62,7 @@ class _EmailAddressInputFormState extends State<EmailAddressInputForm> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController()
+    _controller = (widget.controller ?? TextEditingController())
       ..addListener(_updateEmailAddressValidity);
     _isValidEmailAddress = false;
   }
@@ -114,10 +115,7 @@ class _EmailAddressInputFormState extends State<EmailAddressInputForm> {
       setState(() {
         _isValidEmailAddress = valid;
       });
-      if (widget.onEmailAddressValidityChanged?.call(_controller.text, valid) ==
-          true) {
-        _clearInput();
-      }
+      widget.onEmailAddressValidityChanged?.call(_controller.text, valid);
     }
   }
 

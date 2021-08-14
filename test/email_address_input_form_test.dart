@@ -74,6 +74,7 @@ void main() {
       String? expectedInput;
       String? textInput;
       bool validEmail = false;
+      var controller = TextEditingController();
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: [
@@ -84,8 +85,8 @@ void main() {
               onEmailAddressValidityChanged: (input, valid) {
                 textInput = input;
                 validEmail = valid;
-                return input == expectedInput;
               },
+              controller: controller,
             ),
           ),
         ),
@@ -96,6 +97,7 @@ void main() {
       expect(validEmail, isTrue);
       textInput = null;
       validEmail = false;
+      controller.clear();
 
       expectedInput = 'user.1@my.org';
       await tester.enterText(find.byType(TextFormField), expectedInput);
@@ -103,6 +105,7 @@ void main() {
       expect(validEmail, isTrue);
       textInput = null;
       validEmail = false;
+      controller.clear();
 
       expectedInput = '1+2@my.org';
       await tester.enterText(find.byType(TextFormField), expectedInput);
@@ -110,12 +113,14 @@ void main() {
       expect(validEmail, isTrue);
       textInput = null;
       validEmail = false;
+      controller.clear();
     });
 
     testWidgets('invalid email', (tester) async {
       String? expectedInput;
       String? textInput;
       bool validEmail = false;
+      var controller = TextEditingController();
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: [
@@ -126,8 +131,8 @@ void main() {
               onEmailAddressValidityChanged: (input, valid) {
                 textInput = input;
                 validEmail = valid;
-                return input == expectedInput;
               },
+              controller: controller,
             ),
           ),
         ),
@@ -137,21 +142,25 @@ void main() {
       await tester.enterText(find.byType(TextFormField), expectedInput);
       expect(textInput, isNull);
       expect(validEmail, isFalse);
+      controller.clear();
 
       expectedInput = 'user@';
       await tester.enterText(find.byType(TextFormField), expectedInput);
       expect(textInput, isNull);
       expect(validEmail, isFalse);
+      controller.clear();
 
       expectedInput = 'user@my';
       await tester.enterText(find.byType(TextFormField), expectedInput);
       expect(textInput, isNull);
       expect(validEmail, isFalse);
+      controller.clear();
 
       expectedInput = 'user@.org';
       await tester.enterText(find.byType(TextFormField), expectedInput);
       expect(textInput, isNull);
       expect(validEmail, isFalse);
+      controller.clear();
     });
   });
 }
