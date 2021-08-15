@@ -7,8 +7,13 @@ const en = 'en';
 const fr = 'fr';
 
 /// Function that gives access to a localization instance of a specified type.
-L loc<L extends BaseLocalizations>(BuildContext context) =>
-    Localizations.of<L>(context, L)!;
+L loc<L extends BaseLocalizations>(BuildContext context) {
+  var loc = Localizations.of<L>(context, L);
+  if (loc == null) {
+    throw 'Localizations class $L must be registered.';
+  }
+  return loc;
+}
 
 /// Class that can be extended to build a localization class for an app or
 /// a library.
