@@ -2,15 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+import 'cache.dart';
 import 'firestore.dart';
 
 class DataProvider extends ChangeNotifier {
-  final String path;
   final BuildContext _context;
+  final Cache<DocumentSnapshot> _cache = Cache();
+
+  final String path;
 
   final Query Function(CollectionReference)? queryModifier;
 
-  List<DocumentSnapshot> data = [];
+  List<DocumentSnapshot> get data => _cache.map.values.toList();
+
+  DocumentSnapshot? document(String id) => _cache[id];
 
   DataProvider(
     this._context,
@@ -24,7 +29,10 @@ class DataProvider extends ChangeNotifier {
     var collection = firestoreProvider(_context).instance.collection(path);
     var query = queryModifier != null ? queryModifier!(collection) : collection;
     query.snapshots().listenUnique((snapshots) {
-      data = snapshots.docs;
+      _cache.setAllStale();
+      for (var doc in snapshots.docs) {
+        _cache[doc.id] = doc;
+      }
       notifyListeners();
     }, key: path);
   }
