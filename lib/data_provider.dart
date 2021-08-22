@@ -36,4 +36,17 @@ class DataProvider extends ChangeNotifier {
       notifyListeners();
     }, key: path);
   }
+
+  void delete(String docId) {
+    _cache.setStale(docId);
+    firestoreProvider(_context)
+        .instance
+        .collection(path)
+        .doc(docId)
+        .delete()
+        .then((_) {
+      _cache.remove(docId);
+      notifyListeners();
+    });
+  }
 }
