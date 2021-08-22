@@ -1,13 +1,21 @@
 class Cache<T> {
   final _data = <String, _Entry<T>>{};
 
+  /// Gets all the cache entries that aren't stale.
+  Map<String, T> get map => Map.fromEntries(_data.entries
+      .where((entry) => !entry.value.stale)
+      .map((entry) => MapEntry(entry.key, entry.value.value)));
+
   void clear() => _data.clear();
 
-  int get length => _data.length;
+  /// Looks up the value for a given key and returns it if it isn't stale.
+  T? operator [](String key) =>
+      _data[key]?.stale == false ? _data[key]!.value : null;
 
-  T? operator [](String key) => _data[key]?.value;
-
+  /// Puts a non-stale value with a given key.
   void operator []=(String key, T value) => _data[key] = _Entry(value);
+
+  T? remove(String key) => _data.remove(key)?.value;
 
   bool isStale(String key) => _data[key]!.stale;
 
