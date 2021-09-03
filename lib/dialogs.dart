@@ -94,7 +94,7 @@ class ConfirmDialog {
   Future<bool> show(BuildContext context) => showDialog<bool>(
         context: context,
         builder: _builder,
-      ) as Future<bool>;
+      ).then((result) => result == true);
 
   WidgetBuilder get _builder => (context) => AlertDialog(
         title: Text(title),
