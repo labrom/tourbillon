@@ -23,20 +23,19 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      var changeNotifier = Provider.of<CN>(context);
+    var changeNotifier = Provider.of<CN?>(context);
+    if (changeNotifier != null) {
       return builder(context, changeNotifier, child);
-    } on ProviderNotFoundException {
-      log.d('Found no instance of $CN, creating one');
-      return ChangeNotifierProvider<CN>(
-        create: create,
-        child: Consumer<CN>(
-          builder: (context, changeNotifier, child) =>
-              builder(context, changeNotifier, child),
-          child: child,
-        ),
-      );
     }
+    log.d('Found no instance of $CN, creating one');
+    return ChangeNotifierProvider<CN>(
+      create: create,
+      child: Consumer<CN>(
+        builder: (context, changeNotifier, child) =>
+            builder(context, changeNotifier, child),
+        child: child,
+      ),
+    );
   }
 }
 
