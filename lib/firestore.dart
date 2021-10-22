@@ -55,6 +55,10 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
 
   String getOrDefaultString(String field, String defaultValue) =>
       getOrNull(field)?.toString() ?? defaultValue;
+
+  List<T> getListOf<T>(String field) {
+    return getOrNull<List<dynamic>>(field)?.cast<T>() ?? List<T>.empty();
+  }
 }
 
 /// Extension that ensures a unique stream subscription is opened on a given
