@@ -26,17 +26,13 @@ class _FirebaseFirestoreWrapper implements FirestoreInterface {
 /// Obtains the Firestore provider from the context.
 ///
 /// Widgets that use this function insteand of accessing directly
-/// [FirebaseFirestore] can have their tests inject a fake Firestore.
-/// Apps do not need to inject [FirebaseFirestore], invoking this function
-/// will automatically return it if no [FirestoreInterface] exists in the
-/// context.
-FirestoreInterface firestoreProvider(BuildContext context) {
-  try {
-    return context.read<FirestoreInterface>();
-  } on ProviderNotFoundException {
-    return _FirebaseFirestoreWrapper();
-  }
-}
+/// [FirebaseFirestore] can have their tests inject a fake Firestore as a
+/// [Provider] of [FirestoreInterface].
+/// Apps do not need to inject [FirebaseFirestore] using a [Provider], this
+/// function will automatically return it if no [FirestoreInterface] already
+/// exists in the context.
+FirestoreInterface firestoreProvider(BuildContext context) =>
+    context.read<FirestoreInterface?>() ?? _FirebaseFirestoreWrapper();
 
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
   T? getOrNull<T>(String field) {
