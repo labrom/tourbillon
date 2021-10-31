@@ -17,9 +17,9 @@ class Cache<T> {
 
   T? remove(String key) => _data.remove(key)?.value;
 
-  bool isStale(String key) => _data[key]!.stale;
+  bool isStale(String key) => _data[key]?.stale != false;
 
-  void setStale(String key) => _data[key]!.stale = true;
+  void setStale(String key) => _data[key]?.stale = true;
 
   void setAllStale() {
     for (var value in _data.values) {
