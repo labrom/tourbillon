@@ -21,10 +21,21 @@ void main() {
     cache.setStale('b');
     expect(cache['a'], equals('A'));
     expect(cache['b'], isNull);
+    expect(cache.isStale('b'), isTrue);
     cache['b'] = 'BB';
     expect(cache['b'], equals('BB'));
     cache.setAllStale();
     expect(cache['a'], isNull);
+    expect(cache.isStale('a'), isTrue);
     expect(cache['b'], isNull);
+    expect(cache.isStale('b'), isTrue);
+  });
+  test('stale - null safety', () {
+    var cache = Cache<String>();
+    cache['a'] = 'A';
+    cache.setStale('b');
+    expect(cache.isStale('a'), isFalse);
+    expect(cache.isStale('b'), isTrue);
+    expect(cache.isStale('c'), isTrue);
   });
 }
