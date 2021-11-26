@@ -110,7 +110,7 @@ class _EmailAddressInputFormState extends State<EmailAddressInputForm> {
       );
 
   void _updateEmailAddressValidity() {
-    var valid = _emailRegex.hasMatch(_controller.text);
+    final valid = _emailRegex.hasMatch(_controller.text);
     if (_isValidEmailAddress != valid) {
       setState(() {
         _isValidEmailAddress = valid;

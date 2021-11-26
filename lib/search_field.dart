@@ -51,13 +51,13 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
       );
 
   void _updateResults() {
-    var query = _controller.text.trim();
+    final query = _controller.text.trim();
     setState(
         () => _results = query.isNotEmpty ? widget.getResults.call(query) : []);
     if (_results.isNotEmpty) {
       if (_resultsOverlay == null) {
-        var renderBox = context.findRenderObject() as RenderBox;
-        var offset = renderBox.localToGlobal(Offset.zero);
+        final renderBox = context.findRenderObject() as RenderBox;
+        final offset = renderBox.localToGlobal(Offset.zero);
         _resultsOverlay = OverlayEntry(
           builder: (context) => Positioned(
             left: offset.dx,

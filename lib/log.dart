@@ -14,7 +14,7 @@ class _Printer extends LogPrinter {
           : ['${_levelPrefix[event.level]}: ${event.message}'];
 
   List<String> _logError(LogEvent event) {
-    var lines = <String>[event.message];
+    final lines = <String>[event.message];
     if (event.error != null) {
       lines.add(event.error.toString());
     }

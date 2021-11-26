@@ -6,7 +6,7 @@ const fr = 'fr';
 
 /// Function that gives access to a localization instance of a specified type.
 L loc<L extends BaseLocalizations>(BuildContext context) {
-  var loc = Localizations.of<L>(context, L);
+  final loc = Localizations.of<L>(context, L);
   if (loc == null) {
     throw 'Localizations class $L must be registered.';
   }

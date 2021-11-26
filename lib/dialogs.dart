@@ -25,7 +25,7 @@ class TextInputDialog {
       );
 
   WidgetBuilder get _builder => (context) {
-        var controller = TextEditingController(text: defaultValue);
+        final controller = TextEditingController(text: defaultValue);
         return ListenableProvider.value(
           value: controller,
           builder: (context, _) => AlertDialog(

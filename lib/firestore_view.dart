@@ -143,9 +143,9 @@ class _FirestoreStreamViewState extends State<FirestoreStreamView> {
   @override
   void initState() {
     super.initState();
-    var collection =
+    final collection =
         firestoreProvider(context).instance.collection(widget.path);
-    var query = widget.queryModifier != null
+    final query = widget.queryModifier != null
         ? widget.queryModifier!(collection)
         : collection;
     _stream = query.snapshots();

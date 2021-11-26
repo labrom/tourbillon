@@ -23,7 +23,7 @@ class ChangeNotifierScope<CN extends ChangeNotifier> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var changeNotifier = Provider.of<CN?>(context);
+    final changeNotifier = Provider.of<CN?>(context);
     if (changeNotifier != null) {
       return builder(context, changeNotifier, child);
     }

@@ -25,8 +25,9 @@ class DataProvider extends ChangeNotifier {
   }
 
   void _load() async {
-    var collection = firestoreProvider(_context).instance.collection(path);
-    var query = queryModifier != null ? queryModifier!(collection) : collection;
+    final collection = firestoreProvider(_context).instance.collection(path);
+    final query =
+        queryModifier != null ? queryModifier!(collection) : collection;
     query.snapshots().listenUnique((snapshots) {
       _cache.setAllStale();
       for (var doc in snapshots.docs) {
