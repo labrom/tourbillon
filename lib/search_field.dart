@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// Widget that implements a search field.
+///
+/// This widget requires a [Material] ancestor.
 class SearchField<T> extends StatefulWidget {
   final String? hint;
   final List<T> Function(String query) getResults;
