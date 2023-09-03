@@ -79,7 +79,7 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
             ),
           ),
         );
-        Overlay.of(context)!.insert(_resultsOverlay!);
+        Overlay.of(context).insert(_resultsOverlay!);
       } else {
         _resultsOverlay!.markNeedsBuild();
       }
