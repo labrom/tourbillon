@@ -2,9 +2,16 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as p;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'log.dart';
+
+part 'firestore.g.dart';
+
+@riverpod
+FirebaseFirestore firebaseFirestore(FirebaseFirestoreRef ref) =>
+    FirebaseFirestore.instance;
 
 /// A common interface for [FirebaseFirestore] and for a fake Firestore used
 /// in tests.
@@ -27,8 +34,8 @@ class _FirebaseFirestoreWrapper implements FirestoreInterface {
 ///
 /// Widgets that use this function insteand of accessing directly
 /// [FirebaseFirestore] can have their tests inject a fake Firestore as a
-/// [Provider] of [FirestoreInterface].
-/// Apps do not need to inject [FirebaseFirestore] using a [Provider], this
+/// [p.Provider] of [FirestoreInterface].
+/// Apps do not need to inject [FirebaseFirestore] using a [p.Provider], this
 /// function will automatically return it if no [FirestoreInterface] already
 /// exists in the context.
 FirestoreInterface firestoreProvider(BuildContext context) =>

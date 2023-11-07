@@ -21,16 +21,20 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod:
   cloud_firestore:
   logger:
-  provider:
+  riverpod_annotation:
+  provider: ^6.0.5
 
 dev_dependencies:
+  build_runner:
   test:
   flutter_test:
     sdk: flutter
   fake_cloud_firestore:
   flutter_lints: ^1.0.0
+  riverpod_generator:
 
 
 # For information on the generic Dart part of this file, see the
