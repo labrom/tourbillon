@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tourbillon/log.dart';
 
 import 'cache.dart';
 import 'firestore.dart';
@@ -37,7 +38,8 @@ class DataProvider extends ChangeNotifier {
         notifyListeners();
       },
       key: path,
-      onError: () {
+      onError: (error) {
+        log.e('Firestore error');
         _cache.clear();
         notifyListeners();
       },
