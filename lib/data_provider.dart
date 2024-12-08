@@ -28,13 +28,20 @@ class DataProvider extends ChangeNotifier {
     final collection = firestoreProvider(_context).instance.collection(path);
     final query =
         queryModifier != null ? queryModifier!(collection) : collection;
-    query.snapshots().listenUnique((snapshots) {
-      _cache.setAllStale();
-      for (var doc in snapshots.docs) {
-        _cache[doc.id] = doc;
-      }
-      notifyListeners();
-    }, key: path);
+    _cache.setAllStale();
+    query.snapshots().listenUnique(
+      (snapshots) {
+        for (var doc in snapshots.docs) {
+          _cache[doc.id] = doc;
+        }
+        notifyListeners();
+      },
+      key: path,
+      onError: () {
+        _cache.clear();
+        notifyListeners();
+      },
+    );
   }
 
   void delete(String docId) {
