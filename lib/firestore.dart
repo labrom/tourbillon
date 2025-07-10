@@ -56,10 +56,18 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
   T getOrDefault<T>(String field, T defaultValue) =>
       getOrNull(field) ?? defaultValue;
 
-  String getOrDefaultString(String field, String defaultValue) =>
+  String getStringOrDefault(String field, String defaultValue) =>
       getOrNull(field)?.toString() ?? defaultValue;
 
-  DateTime? getOrNullDateTime(String field) {
+  double getDoubleOrDefault(String field, double defaultValue) {
+    final value = getOrNull(field);
+    if (value is int) {
+      return value.toDouble();
+    }
+    return value;
+  }
+
+  DateTime? getDateTimeOrNull(String field) {
     final timestamp = getOrNull<Timestamp>(field);
     if (timestamp != null) {
       return DateTime.fromMicrosecondsSinceEpoch(timestamp.microsecondsSinceEpoch);

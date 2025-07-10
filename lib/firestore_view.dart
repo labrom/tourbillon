@@ -208,9 +208,9 @@ class _TileListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(doc.getOrDefaultString(titleField, '')),
+        title: Text(doc.getStringOrDefault(titleField, '')),
         subtitle: subtitleField != null
-            ? Text(doc.getOrDefaultString(subtitleField!, ''))
+            ? Text(doc.getStringOrDefault(subtitleField!, ''))
             : null,
         dense: dense,
         isThreeLine: isThreeLine,
