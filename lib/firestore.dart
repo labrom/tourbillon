@@ -66,7 +66,7 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
     if (value is int) {
       return value.toDouble();
     }
-    return value;
+    return value ?? defaultValue;
   }
 
   DateTime? getDateTimeOrNull(String field) {
