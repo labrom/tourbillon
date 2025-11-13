@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,8 +11,10 @@ import 'log.dart';
 part 'firestore.g.dart';
 
 @riverpod
-FirebaseFirestore firebaseFirestore(Ref ref, {String? database}) =>
-    database == null ? FirebaseFirestore.instance : FirebaseFirestore.instanceFor(app: Firebase.app(), databaseId: database);
+FirebaseFirestore firebaseFirestore(Ref ref, {String? database}) => database ==
+        null
+    ? FirebaseFirestore.instance
+    : FirebaseFirestore.instanceFor(app: Firebase.app(), databaseId: database);
 
 /// A common interface for [FirebaseFirestore] and for a fake Firestore used
 /// in tests.
@@ -61,6 +62,8 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
   String getStringOrDefault(String field, String defaultValue) =>
       getOrNull(field)?.toString() ?? defaultValue;
 
+  String getString(String field) => getStringOrDefault(field, '');
+
   double getDoubleOrDefault(String field, double defaultValue) {
     final value = getOrNull(field);
     if (value is int) {
@@ -69,10 +72,18 @@ extension SafeDocumentSnapshotGet on DocumentSnapshot {
     return value ?? defaultValue;
   }
 
+  double getDouble(String field) => getDoubleOrDefault(field, 0);
+
+  bool getBoolOrDefault(String field, bool defaultValue) =>
+      getOrDefault<bool>(field, defaultValue);
+
+  bool getBool(String field) => getBoolOrDefault(field, false);
+
   DateTime? getDateTimeOrNull(String field) {
     final timestamp = getOrNull<Timestamp>(field);
     if (timestamp != null) {
-      return DateTime.fromMicrosecondsSinceEpoch(timestamp.microsecondsSinceEpoch);
+      return DateTime.fromMicrosecondsSinceEpoch(
+          timestamp.microsecondsSinceEpoch);
     }
     return null;
   }
