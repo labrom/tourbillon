@@ -6,156 +6,89 @@ part of 'firestore.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$firebaseFirestoreHash() => r'accc0cf4946ef2d030c0ba68f39acc1b55ebe330';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [firebaseFirestore].
 @ProviderFor(firebaseFirestore)
-const firebaseFirestoreProvider = FirebaseFirestoreFamily();
+const firebaseFirestoreProvider = FirebaseFirestoreFamily._();
 
-/// See also [firebaseFirestore].
-class FirebaseFirestoreFamily extends Family<FirebaseFirestore> {
-  /// See also [firebaseFirestore].
-  const FirebaseFirestoreFamily();
-
-  /// See also [firebaseFirestore].
-  FirebaseFirestoreProvider call({
-    String? database,
-  }) {
-    return FirebaseFirestoreProvider(
-      database: database,
-    );
-  }
-
-  @override
-  FirebaseFirestoreProvider getProviderOverride(
-    covariant FirebaseFirestoreProvider provider,
-  ) {
-    return call(
-      database: provider.database,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'firebaseFirestoreProvider';
-}
-
-/// See also [firebaseFirestore].
-class FirebaseFirestoreProvider extends AutoDisposeProvider<FirebaseFirestore> {
-  /// See also [firebaseFirestore].
-  FirebaseFirestoreProvider({
-    String? database,
-  }) : this._internal(
-          (ref) => firebaseFirestore(
-            ref as FirebaseFirestoreRef,
-            database: database,
-          ),
-          from: firebaseFirestoreProvider,
+final class FirebaseFirestoreProvider extends $FunctionalProvider<
+    FirebaseFirestore,
+    FirebaseFirestore,
+    FirebaseFirestore> with $Provider<FirebaseFirestore> {
+  const FirebaseFirestoreProvider._(
+      {required FirebaseFirestoreFamily super.from,
+      required String? super.argument})
+      : super(
+          retry: null,
           name: r'firebaseFirestoreProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$firebaseFirestoreHash,
-          dependencies: FirebaseFirestoreFamily._dependencies,
-          allTransitiveDependencies:
-              FirebaseFirestoreFamily._allTransitiveDependencies,
-          database: database,
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
         );
 
-  FirebaseFirestoreProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.database,
-  }) : super.internal();
-
-  final String? database;
+  @override
+  String debugGetCreateSourceHash() => _$firebaseFirestoreHash();
 
   @override
-  Override overrideWith(
-    FirebaseFirestore Function(FirebaseFirestoreRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: FirebaseFirestoreProvider._internal(
-        (ref) => create(ref as FirebaseFirestoreRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        database: database,
-      ),
+  String toString() {
+    return r'firebaseFirestoreProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<FirebaseFirestore> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  FirebaseFirestore create(Ref ref) {
+    final argument = this.argument as String?;
+    return firebaseFirestore(
+      ref,
+      database: argument,
     );
   }
 
-  @override
-  AutoDisposeProviderElement<FirebaseFirestore> createElement() {
-    return _FirebaseFirestoreProviderElement(this);
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FirebaseFirestore value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FirebaseFirestore>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FirebaseFirestoreProvider && other.database == database;
+    return other is FirebaseFirestoreProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, database.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin FirebaseFirestoreRef on AutoDisposeProviderRef<FirebaseFirestore> {
-  /// The parameter `database` of this provider.
-  String? get database;
-}
+String _$firebaseFirestoreHash() => r'accc0cf4946ef2d030c0ba68f39acc1b55ebe330';
 
-class _FirebaseFirestoreProviderElement
-    extends AutoDisposeProviderElement<FirebaseFirestore>
-    with FirebaseFirestoreRef {
-  _FirebaseFirestoreProviderElement(super.provider);
+final class FirebaseFirestoreFamily extends $Family
+    with $FunctionalFamilyOverride<FirebaseFirestore, String?> {
+  const FirebaseFirestoreFamily._()
+      : super(
+          retry: null,
+          name: r'firebaseFirestoreProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirebaseFirestoreProvider call({
+    String? database,
+  }) =>
+      FirebaseFirestoreProvider._(argument: database, from: this);
 
   @override
-  String? get database => (origin as FirebaseFirestoreProvider).database;
+  String toString() => r'firebaseFirestoreProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

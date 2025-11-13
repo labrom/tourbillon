@@ -22,10 +22,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod:
+  flutter_riverpod: ^3.0.3
   cloud_firestore:
   logger:
-  riverpod_annotation:
+  riverpod_annotation: ^3.0.3
   provider: ^6.0.5
 
 dev_dependencies:
@@ -35,7 +35,7 @@ dev_dependencies:
     sdk: flutter
   fake_cloud_firestore:
   flutter_lints: ^1.0.0
-  riverpod_generator:
+  riverpod_generator: ^3.0.3
 
 
 # For information on the generic Dart part of this file, see the
