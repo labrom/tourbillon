@@ -92,3 +92,729 @@ final class FirebaseFirestoreFamily extends $Family
   @override
   String toString() => r'firebaseFirestoreProvider';
 }
+
+@ProviderFor(firestoreCollectionReference)
+const firestoreCollectionReferenceProvider =
+    FirestoreCollectionReferenceFamily._();
+
+final class FirestoreCollectionReferenceProvider extends $FunctionalProvider<
+        CollectionReference<Map<String, dynamic>>,
+        CollectionReference<Map<String, dynamic>>,
+        CollectionReference<Map<String, dynamic>>>
+    with $Provider<CollectionReference<Map<String, dynamic>>> {
+  const FirestoreCollectionReferenceProvider._(
+      {required FirestoreCollectionReferenceFamily super.from,
+      required (
+        String, {
+        String? database,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreCollectionReferenceProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreCollectionReferenceHash();
+
+  @override
+  String toString() {
+    return r'firestoreCollectionReferenceProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<CollectionReference<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  CollectionReference<Map<String, dynamic>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+    });
+    return firestoreCollectionReference(
+      ref,
+      argument.$1,
+      database: argument.database,
+    );
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CollectionReference<Map<String, dynamic>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<CollectionReference<Map<String, dynamic>>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreCollectionReferenceProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreCollectionReferenceHash() =>
+    r'596ce13f6210ceec24d79e6033f369729b2f9da9';
+
+final class FirestoreCollectionReferenceFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            CollectionReference<Map<String, dynamic>>,
+            (
+              String, {
+              String? database,
+            })> {
+  const FirestoreCollectionReferenceFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreCollectionReferenceProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreCollectionReferenceProvider call(
+    String path, {
+    String? database,
+  }) =>
+      FirestoreCollectionReferenceProvider._(argument: (
+        path,
+        database: database,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreCollectionReferenceProvider';
+}
+
+@ProviderFor(firestoreDocumentReference)
+const firestoreDocumentReferenceProvider = FirestoreDocumentReferenceFamily._();
+
+final class FirestoreDocumentReferenceProvider extends $FunctionalProvider<
+        DocumentReference<Map<String, dynamic>>,
+        DocumentReference<Map<String, dynamic>>,
+        DocumentReference<Map<String, dynamic>>>
+    with $Provider<DocumentReference<Map<String, dynamic>>> {
+  const FirestoreDocumentReferenceProvider._(
+      {required FirestoreDocumentReferenceFamily super.from,
+      required (
+        String, {
+        String? database,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreDocumentReferenceProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreDocumentReferenceHash();
+
+  @override
+  String toString() {
+    return r'firestoreDocumentReferenceProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<DocumentReference<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  DocumentReference<Map<String, dynamic>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+    });
+    return firestoreDocumentReference(
+      ref,
+      argument.$1,
+      database: argument.database,
+    );
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DocumentReference<Map<String, dynamic>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<DocumentReference<Map<String, dynamic>>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreDocumentReferenceProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreDocumentReferenceHash() =>
+    r'3f366b12cc258255e9e0a0fbfa2eba7ed074a3e2';
+
+final class FirestoreDocumentReferenceFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            DocumentReference<Map<String, dynamic>>,
+            (
+              String, {
+              String? database,
+            })> {
+  const FirestoreDocumentReferenceFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreDocumentReferenceProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreDocumentReferenceProvider call(
+    String path, {
+    String? database,
+  }) =>
+      FirestoreDocumentReferenceProvider._(argument: (
+        path,
+        database: database,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreDocumentReferenceProvider';
+}
+
+@ProviderFor(firestoreDocument)
+const firestoreDocumentProvider = FirestoreDocumentFamily._();
+
+final class FirestoreDocumentProvider extends $FunctionalProvider<
+        AsyncValue<DocumentSnapshot<Map<String, dynamic>>>,
+        DocumentSnapshot<Map<String, dynamic>>,
+        FutureOr<DocumentSnapshot<Map<String, dynamic>>>>
+    with
+        $FutureModifier<DocumentSnapshot<Map<String, dynamic>>>,
+        $FutureProvider<DocumentSnapshot<Map<String, dynamic>>> {
+  const FirestoreDocumentProvider._(
+      {required FirestoreDocumentFamily super.from,
+      required (
+        String, {
+        String? database,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreDocumentProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreDocumentHash();
+
+  @override
+  String toString() {
+    return r'firestoreDocumentProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<DocumentSnapshot<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<DocumentSnapshot<Map<String, dynamic>>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+    });
+    return firestoreDocument(
+      ref,
+      argument.$1,
+      database: argument.database,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreDocumentProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreDocumentHash() => r'76e82de2d180f8070e4aa94a6e8d1767472065f6';
+
+final class FirestoreDocumentFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            FutureOr<DocumentSnapshot<Map<String, dynamic>>>,
+            (
+              String, {
+              String? database,
+            })> {
+  const FirestoreDocumentFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreDocumentProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreDocumentProvider call(
+    String path, {
+    String? database,
+  }) =>
+      FirestoreDocumentProvider._(argument: (
+        path,
+        database: database,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreDocumentProvider';
+}
+
+@ProviderFor(firestoreDocumentStream)
+const firestoreDocumentStreamProvider = FirestoreDocumentStreamFamily._();
+
+final class FirestoreDocumentStreamProvider extends $FunctionalProvider<
+        AsyncValue<DocumentSnapshot<Map<String, dynamic>>>,
+        DocumentSnapshot<Map<String, dynamic>>,
+        Stream<DocumentSnapshot<Map<String, dynamic>>>>
+    with
+        $FutureModifier<DocumentSnapshot<Map<String, dynamic>>>,
+        $StreamProvider<DocumentSnapshot<Map<String, dynamic>>> {
+  const FirestoreDocumentStreamProvider._(
+      {required FirestoreDocumentStreamFamily super.from,
+      required (
+        String, {
+        String? database,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreDocumentStreamProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreDocumentStreamHash();
+
+  @override
+  String toString() {
+    return r'firestoreDocumentStreamProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $StreamProviderElement<DocumentSnapshot<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $StreamProviderElement(pointer);
+
+  @override
+  Stream<DocumentSnapshot<Map<String, dynamic>>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+    });
+    return firestoreDocumentStream(
+      ref,
+      argument.$1,
+      database: argument.database,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreDocumentStreamProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreDocumentStreamHash() =>
+    r'213c3c2d7b9b88c328499287329f9e42c1abeefc';
+
+final class FirestoreDocumentStreamFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            Stream<DocumentSnapshot<Map<String, dynamic>>>,
+            (
+              String, {
+              String? database,
+            })> {
+  const FirestoreDocumentStreamFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreDocumentStreamProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreDocumentStreamProvider call(
+    String path, {
+    String? database,
+  }) =>
+      FirestoreDocumentStreamProvider._(argument: (
+        path,
+        database: database,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreDocumentStreamProvider';
+}
+
+@ProviderFor(firestoreQuery)
+const firestoreQueryProvider = FirestoreQueryFamily._();
+
+final class FirestoreQueryProvider extends $FunctionalProvider<
+    Query<Map<String, dynamic>>,
+    Query<Map<String, dynamic>>,
+    Query<Map<String, dynamic>>> with $Provider<Query<Map<String, dynamic>>> {
+  const FirestoreQueryProvider._(
+      {required FirestoreQueryFamily super.from,
+      required (
+        String, {
+        String? database,
+        List<OrderBy> orderBy,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreQueryProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreQueryHash();
+
+  @override
+  String toString() {
+    return r'firestoreQueryProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<Query<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Query<Map<String, dynamic>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+      List<OrderBy> orderBy,
+    });
+    return firestoreQuery(
+      ref,
+      argument.$1,
+      database: argument.database,
+      orderBy: argument.orderBy,
+    );
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Query<Map<String, dynamic>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Query<Map<String, dynamic>>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreQueryProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreQueryHash() => r'212240b3c753173fe2281e04a84169874b220f25';
+
+final class FirestoreQueryFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            Query<Map<String, dynamic>>,
+            (
+              String, {
+              String? database,
+              List<OrderBy> orderBy,
+            })> {
+  const FirestoreQueryFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreQueryProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreQueryProvider call(
+    String collectionPath, {
+    String? database,
+    List<OrderBy> orderBy = const [],
+  }) =>
+      FirestoreQueryProvider._(argument: (
+        collectionPath,
+        database: database,
+        orderBy: orderBy,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreQueryProvider';
+}
+
+@ProviderFor(firestoreQueryStream)
+const firestoreQueryStreamProvider = FirestoreQueryStreamFamily._();
+
+final class FirestoreQueryStreamProvider extends $FunctionalProvider<
+        AsyncValue<QuerySnapshot<Map<String, dynamic>>>,
+        QuerySnapshot<Map<String, dynamic>>,
+        Stream<QuerySnapshot<Map<String, dynamic>>>>
+    with
+        $FutureModifier<QuerySnapshot<Map<String, dynamic>>>,
+        $StreamProvider<QuerySnapshot<Map<String, dynamic>>> {
+  const FirestoreQueryStreamProvider._(
+      {required FirestoreQueryStreamFamily super.from,
+      required (
+        String, {
+        String? database,
+        List<OrderBy> orderBy,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreQueryStreamProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreQueryStreamHash();
+
+  @override
+  String toString() {
+    return r'firestoreQueryStreamProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $StreamProviderElement<QuerySnapshot<Map<String, dynamic>>> $createElement(
+          $ProviderPointer pointer) =>
+      $StreamProviderElement(pointer);
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+      List<OrderBy> orderBy,
+    });
+    return firestoreQueryStream(
+      ref,
+      argument.$1,
+      database: argument.database,
+      orderBy: argument.orderBy,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreQueryStreamProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreQueryStreamHash() =>
+    r'36e0fee8683beb816d97965d3431b6e9685b87d2';
+
+final class FirestoreQueryStreamFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            Stream<QuerySnapshot<Map<String, dynamic>>>,
+            (
+              String, {
+              String? database,
+              List<OrderBy> orderBy,
+            })> {
+  const FirestoreQueryStreamFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreQueryStreamProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreQueryStreamProvider call(
+    String collectionPath, {
+    String? database,
+    List<OrderBy> orderBy = const [],
+  }) =>
+      FirestoreQueryStreamProvider._(argument: (
+        collectionPath,
+        database: database,
+        orderBy: orderBy,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreQueryStreamProvider';
+}
+
+@ProviderFor(firestoreQueryDocumentList)
+const firestoreQueryDocumentListProvider = FirestoreQueryDocumentListFamily._();
+
+final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
+        AsyncValue<List<QueryDocumentSnapshot<Map<String, dynamic>>>>,
+        List<QueryDocumentSnapshot<Map<String, dynamic>>>,
+        FutureOr<List<QueryDocumentSnapshot<Map<String, dynamic>>>>>
+    with
+        $FutureModifier<List<QueryDocumentSnapshot<Map<String, dynamic>>>>,
+        $FutureProvider<List<QueryDocumentSnapshot<Map<String, dynamic>>>> {
+  const FirestoreQueryDocumentListProvider._(
+      {required FirestoreQueryDocumentListFamily super.from,
+      required (
+        String, {
+        String? database,
+        List<OrderBy> orderBy,
+      })
+          super.argument})
+      : super(
+          retry: null,
+          name: r'firestoreQueryDocumentListProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$firestoreQueryDocumentListHash();
+
+  @override
+  String toString() {
+    return r'firestoreQueryDocumentListProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      $createElement($ProviderPointer pointer) =>
+          $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<QueryDocumentSnapshot<Map<String, dynamic>>>> create(Ref ref) {
+    final argument = this.argument as (
+      String, {
+      String? database,
+      List<OrderBy> orderBy,
+    });
+    return firestoreQueryDocumentList(
+      ref,
+      argument.$1,
+      database: argument.database,
+      orderBy: argument.orderBy,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FirestoreQueryDocumentListProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$firestoreQueryDocumentListHash() =>
+    r'2513a7bdad9a1d0f31e13a05a3f597ab8f9ffcac';
+
+final class FirestoreQueryDocumentListFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            FutureOr<List<QueryDocumentSnapshot<Map<String, dynamic>>>>,
+            (
+              String, {
+              String? database,
+              List<OrderBy> orderBy,
+            })> {
+  const FirestoreQueryDocumentListFamily._()
+      : super(
+          retry: null,
+          name: r'firestoreQueryDocumentListProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  FirestoreQueryDocumentListProvider call(
+    String collectionPath, {
+    String? database,
+    List<OrderBy> orderBy = const [],
+  }) =>
+      FirestoreQueryDocumentListProvider._(argument: (
+        collectionPath,
+        database: database,
+        orderBy: orderBy,
+      ), from: this);
+
+  @override
+  String toString() => r'firestoreQueryDocumentListProvider';
+}

@@ -44,6 +44,80 @@ class _FirebaseFirestoreWrapper implements FirestoreInterface {
 FirestoreInterface firestoreProvider(BuildContext context) =>
     context.read<FirestoreInterface?>() ?? _FirebaseFirestoreWrapper();
 
+@riverpod
+CollectionReference<Map<String, dynamic>> firestoreCollectionReference(
+    Ref ref, String path,
+    {String? database}) {
+  return ref
+      .read(firebaseFirestoreProvider(database: database))
+      .collection(path);
+}
+
+@riverpod
+DocumentReference<Map<String, dynamic>> firestoreDocumentReference(
+    Ref ref, String path,
+    {String? database}) {
+  return ref.read(firebaseFirestoreProvider(database: database)).doc(path);
+}
+
+@riverpod
+Future<DocumentSnapshot<Map<String, dynamic>>> firestoreDocument(
+    Ref ref, String path,
+    {String? database}) async {
+  return ref
+      .watch(firestoreDocumentReferenceProvider(path, database: database))
+      .get();
+}
+
+@riverpod
+Stream<DocumentSnapshot<Map<String, dynamic>>> firestoreDocumentStream(
+    Ref ref, String path,
+    {String? database}) {
+  return ref
+      .watch(firestoreDocumentReferenceProvider(path, database: database))
+      .snapshots();
+}
+
+@riverpod
+Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
+    {String? database, List<OrderBy> orderBy = const []}) {
+  Query<Map<String, dynamic>> query = ref.watch(
+      firestoreCollectionReferenceProvider(collectionPath, database: database));
+  for (final ob in orderBy) {
+    query = query.orderBy(ob.fieldPath, descending: !ob.ascending);
+  }
+  return query;
+}
+
+@riverpod
+Stream<QuerySnapshot<Map<String, dynamic>>> firestoreQueryStream(
+        Ref ref, String collectionPath,
+        {String? database, List<OrderBy> orderBy = const []}) =>
+    ref
+        .watch(firestoreQueryProvider(collectionPath,
+            database: database, orderBy: orderBy))
+        .snapshots();
+
+@riverpod
+Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+    firestoreQueryDocumentList(Ref ref, String collectionPath,
+            {String? database, List<OrderBy> orderBy = const []}) async =>
+        ref
+            .watch(firestoreQueryProvider(collectionPath,
+                database: database, orderBy: orderBy))
+            .get()
+            .then((querySnapshot) => querySnapshot.docs);
+
+@immutable
+class OrderBy {
+  const OrderBy(this.fieldPath, {this.ascending = true});
+  OrderBy.field(String field, {this.ascending = true})
+      : fieldPath = FieldPath([field]);
+
+  final FieldPath fieldPath;
+  final bool ascending;
+}
+
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
   T? getOrNull<T>(String field) {
     try {
