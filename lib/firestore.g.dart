@@ -168,7 +168,7 @@ final class FirestoreCollectionReferenceProvider extends $FunctionalProvider<
 }
 
 String _$firestoreCollectionReferenceHash() =>
-    r'596ce13f6210ceec24d79e6033f369729b2f9da9';
+    r'010b42b99d6ce348852151901b1f3b71b4fa1b68';
 
 final class FirestoreCollectionReferenceFamily extends $Family
     with
@@ -274,7 +274,7 @@ final class FirestoreDocumentReferenceProvider extends $FunctionalProvider<
 }
 
 String _$firestoreDocumentReferenceHash() =>
-    r'3f366b12cc258255e9e0a0fbfa2eba7ed074a3e2';
+    r'a835be2b9479bdc2645b1dc1ecce6dc722bcc464';
 
 final class FirestoreDocumentReferenceFamily extends $Family
     with
@@ -371,7 +371,7 @@ final class FirestoreDocumentProvider extends $FunctionalProvider<
   }
 }
 
-String _$firestoreDocumentHash() => r'76e82de2d180f8070e4aa94a6e8d1767472065f6';
+String _$firestoreDocumentHash() => r'e3c0e02601f3cfdb0f637748b27f7398a662f8cd';
 
 final class FirestoreDocumentFamily extends $Family
     with
@@ -470,7 +470,7 @@ final class FirestoreDocumentStreamProvider extends $FunctionalProvider<
 }
 
 String _$firestoreDocumentStreamHash() =>
-    r'213c3c2d7b9b88c328499287329f9e42c1abeefc';
+    r'987bbcf2445d7a56ac4866c3c5cd0ae97d0b201f';
 
 final class FirestoreDocumentStreamFamily extends $Family
     with
@@ -575,7 +575,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
   }
 }
 
-String _$firestoreQueryHash() => r'212240b3c753173fe2281e04a84169874b220f25';
+String _$firestoreQueryHash() => r'535ca26d094ed202c80635ad5c8a5c988e45debb';
 
 final class FirestoreQueryFamily extends $Family
     with
@@ -679,7 +679,7 @@ final class FirestoreQueryStreamProvider extends $FunctionalProvider<
 }
 
 String _$firestoreQueryStreamHash() =>
-    r'36e0fee8683beb816d97965d3431b6e9685b87d2';
+    r'fab52c76c29950950534ad757f013b3b230d31ad';
 
 final class FirestoreQueryStreamFamily extends $Family
     with
@@ -784,7 +784,7 @@ final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
 }
 
 String _$firestoreQueryDocumentListHash() =>
-    r'2513a7bdad9a1d0f31e13a05a3f597ab8f9ffcac';
+    r'c331c7aeb4fe910e24bb6a52d44490e677344b35';
 
 final class FirestoreQueryDocumentListFamily extends $Family
     with

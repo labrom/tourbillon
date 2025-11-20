@@ -48,41 +48,35 @@ FirestoreInterface firestoreProvider(BuildContext context) =>
 CollectionReference<Map<String, dynamic>> firestoreCollectionReference(
     Ref ref, String path,
     {String? database}) {
-  return ref
-      .read(firebaseFirestoreProvider(database: database))
-      .collection(path);
+  return firebaseFirestore(ref, database: database).collection(path);
 }
 
 @riverpod
 DocumentReference<Map<String, dynamic>> firestoreDocumentReference(
     Ref ref, String path,
     {String? database}) {
-  return ref.read(firebaseFirestoreProvider(database: database)).doc(path);
+  return firebaseFirestore(ref, database: database).doc(path);
 }
 
 @riverpod
 Future<DocumentSnapshot<Map<String, dynamic>>> firestoreDocument(
     Ref ref, String path,
     {String? database}) async {
-  return ref
-      .watch(firestoreDocumentReferenceProvider(path, database: database))
-      .get();
+  return firestoreDocumentReference(ref, path, database: database).get();
 }
 
 @riverpod
 Stream<DocumentSnapshot<Map<String, dynamic>>> firestoreDocumentStream(
     Ref ref, String path,
     {String? database}) {
-  return ref
-      .watch(firestoreDocumentReferenceProvider(path, database: database))
-      .snapshots();
+  return firestoreDocumentReference(ref, path, database: database).snapshots();
 }
 
 @riverpod
 Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
     {String? database, List<OrderBy> orderBy = const []}) {
-  Query<Map<String, dynamic>> query = ref.watch(
-      firestoreCollectionReferenceProvider(collectionPath, database: database));
+  Query<Map<String, dynamic>> query =
+      firestoreCollectionReference(ref, collectionPath, database: database);
   for (final ob in orderBy) {
     query = query.orderBy(ob.fieldPath, descending: !ob.ascending);
   }
@@ -93,18 +87,15 @@ Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
 Stream<QuerySnapshot<Map<String, dynamic>>> firestoreQueryStream(
         Ref ref, String collectionPath,
         {String? database, List<OrderBy> orderBy = const []}) =>
-    ref
-        .watch(firestoreQueryProvider(collectionPath,
-            database: database, orderBy: orderBy))
+    firestoreQuery(ref, collectionPath, database: database, orderBy: orderBy)
         .snapshots();
 
 @riverpod
 Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
     firestoreQueryDocumentList(Ref ref, String collectionPath,
             {String? database, List<OrderBy> orderBy = const []}) async =>
-        ref
-            .watch(firestoreQueryProvider(collectionPath,
-                database: database, orderBy: orderBy))
+        firestoreQuery(ref, collectionPath,
+                database: database, orderBy: orderBy)
             .get()
             .then((querySnapshot) => querySnapshot.docs);
 
