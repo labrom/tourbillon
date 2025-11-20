@@ -78,7 +78,7 @@ Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
   Query<Map<String, dynamic>> query =
       firestoreCollectionReference(ref, collectionPath, database: database);
   for (final ob in orderBy) {
-    query = query.orderBy(ob.fieldPath, descending: !ob.ascending);
+    query = query.orderBy(ob.fieldPath, descending: ob.descending);
   }
   return query;
 }
@@ -101,12 +101,12 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
 
 @immutable
 class OrderBy {
-  const OrderBy(this.fieldPath, {this.ascending = true});
-  OrderBy.field(String field, {this.ascending = true})
+  const OrderBy(this.fieldPath, {this.descending = false});
+  OrderBy.field(String field, {this.descending = false})
       : fieldPath = FieldPath([field]);
 
   final FieldPath fieldPath;
-  final bool ascending;
+  final bool descending;
 }
 
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
