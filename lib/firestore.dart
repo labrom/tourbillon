@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'log.dart';
 
 part 'firestore.g.dart';
+part 'firestore.freezed.dart';
 
 @riverpod
 FirebaseFirestore firebaseFirestore(Ref ref, {String? database}) => database ==
@@ -99,13 +101,16 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
             .get()
             .then((querySnapshot) => querySnapshot.docs);
 
-@immutable
-class OrderBy {
+@freezed
+class OrderBy with _$OrderBy {
   const OrderBy(this.fieldPath, {this.descending = false});
   OrderBy.field(String field, {this.descending = false})
       : fieldPath = FieldPath([field]);
 
+  @override
   final FieldPath fieldPath;
+
+  @override
   final bool descending;
 }
 

@@ -575,7 +575,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
   }
 }
 
-String _$firestoreQueryHash() => r'535ca26d094ed202c80635ad5c8a5c988e45debb';
+String _$firestoreQueryHash() => r'e0e98b3d936f931760464163eab8111b4d3b34a7';
 
 final class FirestoreQueryFamily extends $Family
     with

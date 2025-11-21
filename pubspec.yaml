@@ -23,6 +23,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.0.3
+  freezed_annotation:
   cloud_firestore:
   logger:
   riverpod_annotation: ^3.0.3
@@ -35,6 +36,7 @@ dev_dependencies:
     sdk: flutter
   fake_cloud_firestore:
   flutter_lints: ^1.0.0
+  freezed:
   riverpod_generator: ^3.0.3
 
 
