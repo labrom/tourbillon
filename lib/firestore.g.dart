@@ -514,7 +514,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
       required (
         String, {
         String? database,
-        List<OrderBy> orderBy,
+        OrderBy? orderBy,
       })
           super.argument})
       : super(
@@ -546,7 +546,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
     final argument = this.argument as (
       String, {
       String? database,
-      List<OrderBy> orderBy,
+      OrderBy? orderBy,
     });
     return firestoreQuery(
       ref,
@@ -575,7 +575,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
   }
 }
 
-String _$firestoreQueryHash() => r'e0e98b3d936f931760464163eab8111b4d3b34a7';
+String _$firestoreQueryHash() => r'5269637d22e5b48410a38d9057144727ba6022f6';
 
 final class FirestoreQueryFamily extends $Family
     with
@@ -584,7 +584,7 @@ final class FirestoreQueryFamily extends $Family
             (
               String, {
               String? database,
-              List<OrderBy> orderBy,
+              OrderBy? orderBy,
             })> {
   const FirestoreQueryFamily._()
       : super(
@@ -598,7 +598,7 @@ final class FirestoreQueryFamily extends $Family
   FirestoreQueryProvider call(
     String collectionPath, {
     String? database,
-    List<OrderBy> orderBy = const [],
+    OrderBy? orderBy,
   }) =>
       FirestoreQueryProvider._(argument: (
         collectionPath,
@@ -625,7 +625,7 @@ final class FirestoreQueryStreamProvider extends $FunctionalProvider<
       required (
         String, {
         String? database,
-        List<OrderBy> orderBy,
+        OrderBy? orderBy,
       })
           super.argument})
       : super(
@@ -657,7 +657,7 @@ final class FirestoreQueryStreamProvider extends $FunctionalProvider<
     final argument = this.argument as (
       String, {
       String? database,
-      List<OrderBy> orderBy,
+      OrderBy? orderBy,
     });
     return firestoreQueryStream(
       ref,
@@ -679,7 +679,7 @@ final class FirestoreQueryStreamProvider extends $FunctionalProvider<
 }
 
 String _$firestoreQueryStreamHash() =>
-    r'fab52c76c29950950534ad757f013b3b230d31ad';
+    r'e2a8b9dbe7ba0134b4bf0d989aeb9559203281d6';
 
 final class FirestoreQueryStreamFamily extends $Family
     with
@@ -688,7 +688,7 @@ final class FirestoreQueryStreamFamily extends $Family
             (
               String, {
               String? database,
-              List<OrderBy> orderBy,
+              OrderBy? orderBy,
             })> {
   const FirestoreQueryStreamFamily._()
       : super(
@@ -702,7 +702,7 @@ final class FirestoreQueryStreamFamily extends $Family
   FirestoreQueryStreamProvider call(
     String collectionPath, {
     String? database,
-    List<OrderBy> orderBy = const [],
+    OrderBy? orderBy,
   }) =>
       FirestoreQueryStreamProvider._(argument: (
         collectionPath,
@@ -729,7 +729,7 @@ final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
       required (
         String, {
         String? database,
-        List<OrderBy> orderBy,
+        OrderBy? orderBy,
       })
           super.argument})
       : super(
@@ -761,7 +761,7 @@ final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
     final argument = this.argument as (
       String, {
       String? database,
-      List<OrderBy> orderBy,
+      OrderBy? orderBy,
     });
     return firestoreQueryDocumentList(
       ref,
@@ -784,7 +784,7 @@ final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
 }
 
 String _$firestoreQueryDocumentListHash() =>
-    r'c331c7aeb4fe910e24bb6a52d44490e677344b35';
+    r'e2e53ba5ec4ca7366665e5673e0b54a950706506';
 
 final class FirestoreQueryDocumentListFamily extends $Family
     with
@@ -793,7 +793,7 @@ final class FirestoreQueryDocumentListFamily extends $Family
             (
               String, {
               String? database,
-              List<OrderBy> orderBy,
+              OrderBy? orderBy,
             })> {
   const FirestoreQueryDocumentListFamily._()
       : super(
@@ -807,7 +807,7 @@ final class FirestoreQueryDocumentListFamily extends $Family
   FirestoreQueryDocumentListProvider call(
     String collectionPath, {
     String? database,
-    List<OrderBy> orderBy = const [],
+    OrderBy? orderBy,
   }) =>
       FirestoreQueryDocumentListProvider._(argument: (
         collectionPath,

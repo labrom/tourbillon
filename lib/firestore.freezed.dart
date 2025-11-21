@@ -16,6 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$OrderBy {
   FieldPath get fieldPath;
   bool get descending;
+  OrderBy? get next;
 
   /// Create a copy of OrderBy
   /// with the given fields replaced by the non-null parameter values.
@@ -32,15 +33,16 @@ mixin _$OrderBy {
             (identical(other.fieldPath, fieldPath) ||
                 other.fieldPath == fieldPath) &&
             (identical(other.descending, descending) ||
-                other.descending == descending));
+                other.descending == descending) &&
+            (identical(other.next, next) || other.next == next));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fieldPath, descending);
+  int get hashCode => Object.hash(runtimeType, fieldPath, descending, next);
 
   @override
   String toString() {
-    return 'OrderBy(fieldPath: $fieldPath, descending: $descending)';
+    return 'OrderBy(fieldPath: $fieldPath, descending: $descending, next: $next)';
   }
 }
 
@@ -49,7 +51,7 @@ abstract mixin class $OrderByCopyWith<$Res> {
   factory $OrderByCopyWith(OrderBy value, $Res Function(OrderBy) _then) =
       _$OrderByCopyWithImpl;
   @useResult
-  $Res call({FieldPath fieldPath, bool descending});
+  $Res call({FieldPath fieldPath, bool descending, OrderBy? next});
 }
 
 /// @nodoc
@@ -66,6 +68,7 @@ class _$OrderByCopyWithImpl<$Res> implements $OrderByCopyWith<$Res> {
   $Res call({
     Object? fieldPath = null,
     Object? descending = null,
+    Object? next = freezed,
   }) {
     return _then(OrderBy(
       null == fieldPath
@@ -76,6 +79,10 @@ class _$OrderByCopyWithImpl<$Res> implements $OrderByCopyWith<$Res> {
           ? _self.descending
           : descending // ignore: cast_nullable_to_non_nullable
               as bool,
+      next: freezed == next
+          ? _self.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as OrderBy?,
     ));
   }
 }

@@ -76,26 +76,27 @@ Stream<DocumentSnapshot<Map<String, dynamic>>> firestoreDocumentStream(
 
 @riverpod
 Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
-    {String? database, List<OrderBy> orderBy = const []}) {
+    {String? database, OrderBy? orderBy}) {
   Query<Map<String, dynamic>> query =
       firestoreCollectionReference(ref, collectionPath, database: database);
-  for (final ob in orderBy) {
+  var ob = orderBy;
+  while (ob != null) {
     query = query.orderBy(ob.fieldPath, descending: ob.descending);
+    ob = ob.next;
   }
   return query;
 }
 
 @riverpod
 Stream<QuerySnapshot<Map<String, dynamic>>> firestoreQueryStream(
-        Ref ref, String collectionPath,
-        {String? database, List<OrderBy> orderBy = const []}) =>
+        Ref ref, String collectionPath, {String? database, OrderBy? orderBy}) =>
     firestoreQuery(ref, collectionPath, database: database, orderBy: orderBy)
         .snapshots();
 
 @riverpod
 Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
     firestoreQueryDocumentList(Ref ref, String collectionPath,
-            {String? database, List<OrderBy> orderBy = const []}) async =>
+            {String? database, OrderBy? orderBy}) async =>
         firestoreQuery(ref, collectionPath,
                 database: database, orderBy: orderBy)
             .get()
@@ -103,8 +104,8 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
 
 @freezed
 class OrderBy with _$OrderBy {
-  const OrderBy(this.fieldPath, {this.descending = false});
-  OrderBy.field(String field, {this.descending = false})
+  const OrderBy(this.fieldPath, {this.descending = false, this.next});
+  OrderBy.field(String field, {this.descending = false, this.next})
       : fieldPath = FieldPath([field]);
 
   @override
@@ -112,6 +113,9 @@ class OrderBy with _$OrderBy {
 
   @override
   final bool descending;
+
+  @override
+  final OrderBy? next;
 }
 
 extension SafeDocumentSnapshotGet on DocumentSnapshot {
