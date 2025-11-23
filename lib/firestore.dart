@@ -12,6 +12,8 @@ import 'log.dart';
 part 'firestore.g.dart';
 part 'firestore.freezed.dart';
 
+const _documentIdInternalFieldName = '__name__';
+
 @riverpod
 FirebaseFirestore firebaseFirestore(Ref ref, {String? database}) => database ==
         null
@@ -81,8 +83,13 @@ Query<Map<String, dynamic>> firestoreQuery(Ref ref, String collectionPath,
       firestoreCollectionReference(ref, collectionPath, database: database);
   var ob = orderBy;
   while (ob != null) {
-    query = query.orderBy(ob.fieldPath, descending: ob.descending);
-    ob = ob.next;
+    if(ob.fieldPath.toString() == _documentIdInternalFieldName) {
+      query = query.orderBy(FieldPath.documentId, descending: ob.descending);
+      // Order by document ID cannot be followed by another order by
+    } else {
+      query = query.orderBy(ob.fieldPath, descending: ob.descending);
+      ob = ob.next;
+    }
   }
   return query;
 }
@@ -107,6 +114,12 @@ class OrderBy with _$OrderBy {
   const OrderBy(this.fieldPath, {this.descending = false, this.next});
   OrderBy.field(String field, {this.descending = false, this.next})
       : fieldPath = FieldPath([field]);
+  // Order by document ID cannot be followed by another order by.
+  OrderBy.documentId({this.descending = false})
+      : fieldPath = FieldPath(const [
+          _documentIdInternalFieldName
+        ]), // Using the internal representation of document id as a marker within this API
+        next = null;
 
   @override
   final FieldPath fieldPath;
