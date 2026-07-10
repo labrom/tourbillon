@@ -10,13 +10,13 @@ part of 'firestore.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(firebaseFirestore)
-const firebaseFirestoreProvider = FirebaseFirestoreFamily._();
+final firebaseFirestoreProvider = FirebaseFirestoreFamily._();
 
 final class FirebaseFirestoreProvider extends $FunctionalProvider<
     FirebaseFirestore,
     FirebaseFirestore,
     FirebaseFirestore> with $Provider<FirebaseFirestore> {
-  const FirebaseFirestoreProvider._(
+  FirebaseFirestoreProvider._(
       {required FirebaseFirestoreFamily super.from,
       required String? super.argument})
       : super(
@@ -75,7 +75,7 @@ String _$firebaseFirestoreHash() => r'accc0cf4946ef2d030c0ba68f39acc1b55ebe330';
 
 final class FirebaseFirestoreFamily extends $Family
     with $FunctionalFamilyOverride<FirebaseFirestore, String?> {
-  const FirebaseFirestoreFamily._()
+  FirebaseFirestoreFamily._()
       : super(
           retry: null,
           name: r'firebaseFirestoreProvider',
@@ -94,7 +94,7 @@ final class FirebaseFirestoreFamily extends $Family
 }
 
 @ProviderFor(firestoreCollectionReference)
-const firestoreCollectionReferenceProvider =
+final firestoreCollectionReferenceProvider =
     FirestoreCollectionReferenceFamily._();
 
 final class FirestoreCollectionReferenceProvider extends $FunctionalProvider<
@@ -102,7 +102,7 @@ final class FirestoreCollectionReferenceProvider extends $FunctionalProvider<
         CollectionReference<Map<String, dynamic>>,
         CollectionReference<Map<String, dynamic>>>
     with $Provider<CollectionReference<Map<String, dynamic>>> {
-  const FirestoreCollectionReferenceProvider._(
+  FirestoreCollectionReferenceProvider._(
       {required FirestoreCollectionReferenceFamily super.from,
       required (
         String, {
@@ -178,7 +178,7 @@ final class FirestoreCollectionReferenceFamily extends $Family
               String, {
               String? database,
             })> {
-  const FirestoreCollectionReferenceFamily._()
+  FirestoreCollectionReferenceFamily._()
       : super(
           retry: null,
           name: r'firestoreCollectionReferenceProvider',
@@ -201,14 +201,14 @@ final class FirestoreCollectionReferenceFamily extends $Family
 }
 
 @ProviderFor(firestoreDocumentReference)
-const firestoreDocumentReferenceProvider = FirestoreDocumentReferenceFamily._();
+final firestoreDocumentReferenceProvider = FirestoreDocumentReferenceFamily._();
 
 final class FirestoreDocumentReferenceProvider extends $FunctionalProvider<
         DocumentReference<Map<String, dynamic>>,
         DocumentReference<Map<String, dynamic>>,
         DocumentReference<Map<String, dynamic>>>
     with $Provider<DocumentReference<Map<String, dynamic>>> {
-  const FirestoreDocumentReferenceProvider._(
+  FirestoreDocumentReferenceProvider._(
       {required FirestoreDocumentReferenceFamily super.from,
       required (
         String, {
@@ -284,7 +284,7 @@ final class FirestoreDocumentReferenceFamily extends $Family
               String, {
               String? database,
             })> {
-  const FirestoreDocumentReferenceFamily._()
+  FirestoreDocumentReferenceFamily._()
       : super(
           retry: null,
           name: r'firestoreDocumentReferenceProvider',
@@ -307,7 +307,7 @@ final class FirestoreDocumentReferenceFamily extends $Family
 }
 
 @ProviderFor(firestoreDocument)
-const firestoreDocumentProvider = FirestoreDocumentFamily._();
+final firestoreDocumentProvider = FirestoreDocumentFamily._();
 
 final class FirestoreDocumentProvider extends $FunctionalProvider<
         AsyncValue<DocumentSnapshot<Map<String, dynamic>>>,
@@ -316,7 +316,7 @@ final class FirestoreDocumentProvider extends $FunctionalProvider<
     with
         $FutureModifier<DocumentSnapshot<Map<String, dynamic>>>,
         $FutureProvider<DocumentSnapshot<Map<String, dynamic>>> {
-  const FirestoreDocumentProvider._(
+  FirestoreDocumentProvider._(
       {required FirestoreDocumentFamily super.from,
       required (
         String, {
@@ -381,7 +381,7 @@ final class FirestoreDocumentFamily extends $Family
               String, {
               String? database,
             })> {
-  const FirestoreDocumentFamily._()
+  FirestoreDocumentFamily._()
       : super(
           retry: null,
           name: r'firestoreDocumentProvider',
@@ -404,7 +404,7 @@ final class FirestoreDocumentFamily extends $Family
 }
 
 @ProviderFor(firestoreDocumentStream)
-const firestoreDocumentStreamProvider = FirestoreDocumentStreamFamily._();
+final firestoreDocumentStreamProvider = FirestoreDocumentStreamFamily._();
 
 final class FirestoreDocumentStreamProvider extends $FunctionalProvider<
         AsyncValue<DocumentSnapshot<Map<String, dynamic>>>,
@@ -413,7 +413,7 @@ final class FirestoreDocumentStreamProvider extends $FunctionalProvider<
     with
         $FutureModifier<DocumentSnapshot<Map<String, dynamic>>>,
         $StreamProvider<DocumentSnapshot<Map<String, dynamic>>> {
-  const FirestoreDocumentStreamProvider._(
+  FirestoreDocumentStreamProvider._(
       {required FirestoreDocumentStreamFamily super.from,
       required (
         String, {
@@ -480,7 +480,7 @@ final class FirestoreDocumentStreamFamily extends $Family
               String, {
               String? database,
             })> {
-  const FirestoreDocumentStreamFamily._()
+  FirestoreDocumentStreamFamily._()
       : super(
           retry: null,
           name: r'firestoreDocumentStreamProvider',
@@ -503,13 +503,13 @@ final class FirestoreDocumentStreamFamily extends $Family
 }
 
 @ProviderFor(firestoreQuery)
-const firestoreQueryProvider = FirestoreQueryFamily._();
+final firestoreQueryProvider = FirestoreQueryFamily._();
 
 final class FirestoreQueryProvider extends $FunctionalProvider<
     Query<Map<String, dynamic>>,
     Query<Map<String, dynamic>>,
     Query<Map<String, dynamic>>> with $Provider<Query<Map<String, dynamic>>> {
-  const FirestoreQueryProvider._(
+  FirestoreQueryProvider._(
       {required FirestoreQueryFamily super.from,
       required (
         String, {
@@ -575,7 +575,7 @@ final class FirestoreQueryProvider extends $FunctionalProvider<
   }
 }
 
-String _$firestoreQueryHash() => r'5269637d22e5b48410a38d9057144727ba6022f6';
+String _$firestoreQueryHash() => r'46b351f36d81540f431ad1fa7b066c6f8c00a667';
 
 final class FirestoreQueryFamily extends $Family
     with
@@ -586,7 +586,7 @@ final class FirestoreQueryFamily extends $Family
               String? database,
               OrderBy? orderBy,
             })> {
-  const FirestoreQueryFamily._()
+  FirestoreQueryFamily._()
       : super(
           retry: null,
           name: r'firestoreQueryProvider',
@@ -611,7 +611,7 @@ final class FirestoreQueryFamily extends $Family
 }
 
 @ProviderFor(firestoreQueryStream)
-const firestoreQueryStreamProvider = FirestoreQueryStreamFamily._();
+final firestoreQueryStreamProvider = FirestoreQueryStreamFamily._();
 
 final class FirestoreQueryStreamProvider extends $FunctionalProvider<
         AsyncValue<QuerySnapshot<Map<String, dynamic>>>,
@@ -620,7 +620,7 @@ final class FirestoreQueryStreamProvider extends $FunctionalProvider<
     with
         $FutureModifier<QuerySnapshot<Map<String, dynamic>>>,
         $StreamProvider<QuerySnapshot<Map<String, dynamic>>> {
-  const FirestoreQueryStreamProvider._(
+  FirestoreQueryStreamProvider._(
       {required FirestoreQueryStreamFamily super.from,
       required (
         String, {
@@ -690,7 +690,7 @@ final class FirestoreQueryStreamFamily extends $Family
               String? database,
               OrderBy? orderBy,
             })> {
-  const FirestoreQueryStreamFamily._()
+  FirestoreQueryStreamFamily._()
       : super(
           retry: null,
           name: r'firestoreQueryStreamProvider',
@@ -715,7 +715,7 @@ final class FirestoreQueryStreamFamily extends $Family
 }
 
 @ProviderFor(firestoreQueryDocumentList)
-const firestoreQueryDocumentListProvider = FirestoreQueryDocumentListFamily._();
+final firestoreQueryDocumentListProvider = FirestoreQueryDocumentListFamily._();
 
 final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
         AsyncValue<List<QueryDocumentSnapshot<Map<String, dynamic>>>>,
@@ -724,7 +724,7 @@ final class FirestoreQueryDocumentListProvider extends $FunctionalProvider<
     with
         $FutureModifier<List<QueryDocumentSnapshot<Map<String, dynamic>>>>,
         $FutureProvider<List<QueryDocumentSnapshot<Map<String, dynamic>>>> {
-  const FirestoreQueryDocumentListProvider._(
+  FirestoreQueryDocumentListProvider._(
       {required FirestoreQueryDocumentListFamily super.from,
       required (
         String, {
@@ -795,7 +795,7 @@ final class FirestoreQueryDocumentListFamily extends $Family
               String? database,
               OrderBy? orderBy,
             })> {
-  const FirestoreQueryDocumentListFamily._()
+  FirestoreQueryDocumentListFamily._()
       : super(
           retry: null,
           name: r'firestoreQueryDocumentListProvider',
