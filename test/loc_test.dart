@@ -35,10 +35,36 @@ void main() {
         '{param_1} {param_2}'
             .withParams({'param_1': 'bonjour', 'param_2': 'madame'}),
         equals('bonjour madame'));
+    expect('{param1} {param1}'.withParams({'param1': 'bonjour'}),
+        equals('bonjour bonjour'));
+    expect(
+        '{param1} {param2}'
+            .withParams({'param1': '{param2}', 'param2': 'bonjour'}),
+        equals('{param2} bonjour'));
+    expect('{param1}'.withParams({'param1': null}), equals(''));
+    expect('bonjour {'.withParams({'param1': 'madame'}), equals('bonjour {'));
+    expect('bonjour }'.withParams({'param1': 'madame'}), equals('bonjour }'));
+    expect(
+      '{ greeting {param1} }'.withParams({'param1': 'bonjour'}),
+      equals('{ greeting bonjour }'),
+    );
   });
   test('bad interpolation', () {
     expect('{} madame'.withParams({'param1': 'bonjour'}), equals('{} madame'));
     expect('{param1} madame'.withParams({'param2': 'bonjour'}),
         equals('{param1} madame'));
+    expect(
+      () => '{param1} {param2}'.withParams(
+        {'param1': 'bonjour'},
+        strict: true,
+      ),
+      throwsA(
+        isA<FormatException>().having(
+          (error) => error.message,
+          'message',
+          contains('param2'),
+        ),
+      ),
+    );
   });
 }

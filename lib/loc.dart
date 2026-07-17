@@ -44,8 +44,8 @@ L loc<L extends BaseLocalizations>(BuildContext context) {
 ///         'fr': 'Au revoir',
 ///       },
 ///       'seeYouInDays': {
-///         'en': 'See you in {} days',
-///         'fr': 'Nous nous reverrons dans {} jours',
+///         'en': 'See you in {days} days',
+///         'fr': 'Nous nous reverrons dans {days} jours',
 ///       },
 ///       'greetNames': {
 ///         'en': 'Hi {name1}, how is {name2}?',
@@ -61,11 +61,12 @@ L loc<L extends BaseLocalizations>(BuildContext context) {
 ///
 ///   String get goodbye => get('goodbye');
 ///
-///   String seeYouInDays(int days) => get('seeYouInDays').withParam(days);
+///   String seeYouInDays(int days) =>
+///       get('seeYouInDays').withParams({'days': days});
 ///
 ///   String greetNames(String name1, String name2) => get('greetNames').withParams({
 ///     'name1': name1,
-///     'name2: name2,
+///     'name2': name2,
 ///   });
 /// }
 /// ```
@@ -107,8 +108,8 @@ class BaseLocalizations {
 ///     'fr': 'Au revoir',
 ///   },
 ///   'seeYouInDays': {
-///     'en': 'See you in {} days',
-///     'fr': 'Nous nous reverrons dans {} jours',
+///     'en': 'See you in {days} days',
+///     'fr': 'Nous nous reverrons dans {days} jours',
 ///   },
 ///   'greetNames': {
 ///     'en': 'Hi {name1}, how is {name2}?',
@@ -142,15 +143,48 @@ class AppLocalizationsDelegate<L extends BaseLocalizations>
 }
 
 extension Interpolation on String {
-  String withParams(Map<String, dynamic> params) {
-    var interpolated = this;
-    for (var entry in params.entries) {
-      interpolated =
-          interpolated.replaceAll('{${entry.key}}', '${entry.value}');
+  static final _placeholder = RegExp(r'\{([a-zA-Z0-9._-]+)\}');
+
+  /// Replaces named placeholders with the corresponding values in [params].
+  ///
+  /// Placeholder names may contain letters, numbers, periods, underscores,
+  /// and hyphens. Missing parameters are left untouched unless [strict] is
+  /// true, in which case a [FormatException] is thrown.
+  String withParams(
+    Map<String, Object?> params, {
+    bool strict = false,
+  }) {
+    final missing = _placeholder
+        .allMatches(this)
+        .map((match) => match.group(1)!)
+        .where((name) => !params.containsKey(name))
+        .toSet();
+
+    if (strict && missing.isNotEmpty) {
+      throw FormatException(
+        'Missing interpolation parameters: ${missing.join(', ')}',
+        this,
+      );
     }
-    return interpolated;
+
+    if (params.isEmpty) return this;
+
+    // Build the matcher from the supplied keys to retain support for legacy
+    // keys outside the documented grammar while replacing the source string
+    // in a single pass.
+    final placeholders = params.keys.map((name) => '{$name}').toList()
+      ..sort((a, b) => b.length.compareTo(a.length));
+    final suppliedPlaceholder =
+        RegExp(placeholders.map(RegExp.escape).join('|'));
+
+    return replaceAllMapped(suppliedPlaceholder, (match) {
+      final placeholder = match.group(0)!;
+      final name = placeholder.substring(1, placeholder.length - 1);
+      return params[name]?.toString() ?? '';
+    });
   }
 
-  String withParam(dynamic value) => replaceAll('{}', '$value')
+  @Deprecated('Use withParams() with a named placeholder instead.')
+  String withParam(Object? value) => replaceAll('{}', '$value')
       .replaceAll(RegExp('{[a-zA-Z0-9._-]+}'), '$value');
 }
