@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-
 import 'change_notifier_scope.dart';
 import 'data_provider.dart';
+
 import 'firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A list widget that displays documents from a Firestore collection.
 class FirestoreView extends StatelessWidget {

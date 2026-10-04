@@ -1,7 +1,7 @@
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-
 import 'log.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:provider/provider.dart';
 
 /// A widget that gives all widgets under itself access to a [ChangeNotifier].
 ///
