@@ -43,3 +43,6 @@ doc/api/
 *.js.deps
 *.js.map
 devtools_options.yaml
+
+# Local dependency development overrides
+pubspec_overrides.yaml

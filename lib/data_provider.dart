@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
-import 'package:tourbillon/log.dart';
-
 import 'cache.dart';
 import 'firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:flutter/widgets.dart';
+import 'package:tourbillon/log.dart';
 
 class DataProvider extends ChangeNotifier {
   final BuildContext _context;
